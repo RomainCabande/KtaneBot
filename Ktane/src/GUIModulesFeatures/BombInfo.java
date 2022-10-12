@@ -1,5 +1,8 @@
 package GUIModulesFeatures;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class BombInfo {
 	private String serialNumber;
 	private int nbAABattery;
@@ -16,16 +19,34 @@ public class BombInfo {
 	}
 	
 	public boolean isLastDigitOfSerialNumberEven() {
-		return(this.serialNumber.charAt(4) % 2 == 0);
+		return(this.getLastDigitSerialNumber() % 2 == 0);
 	}
 	
 	public boolean isLastDigitOfSerialNumberOdd() {
-		return(this.serialNumber.charAt(4) % 2 != 0);
+		return(this.getLastDigitSerialNumber() % 2 != 0);
 	}
 	
-	//A refaire car le 5e est maybe pas tjr le dernier chiffre du serial number
 	public int getLastDigitSerialNumber() {
-		return this.serialNumber.charAt(4);
+		String stringNoNumbers = "";
+		stringNoNumbers = this.serialNumber.replaceAll("[^0-9]+", " ");
+		List<String> list = Arrays.asList(stringNoNumbers.trim().split(""));
+		return Integer.parseInt(list.get(list.size()-1));
+	}
+	
+	public int getAABatteries() {
+		return this.nbAABattery;
+	}
+	
+	public int getDBatteries() {
+		return this.nbDBattery;
+	}
+	
+	public int getLitIndicators() {
+		return this.nbLitIndicator;
+	}
+	
+	public int getUnliIndicators() {
+		return this.nbUnlitIndicator;
 	}
 	
 	public String toString() {

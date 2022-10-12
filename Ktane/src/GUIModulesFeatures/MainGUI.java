@@ -28,6 +28,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.border.LineBorder;
 
 import Wires.MainFils;
+import Wires.WiresGUI;
 
 import java.awt.Color;
 import javax.swing.JScrollPane;
@@ -64,6 +65,7 @@ public class MainGUI {
 	private JButton bombInfoValidateButton;
 	private JScrollPane scrollPane;
 	public BombInfo bombInfo;
+	private JLabel bombInfoStateTextField;
 
 	/**
 	 * Launch the application.
@@ -175,6 +177,7 @@ public class MainGUI {
 		panel_4.add(serialNumberLabel);
 		
 		serialNumberTextField = new JTextField();
+		serialNumberTextField.setBorder(new LineBorder(new Color(171, 173, 179), 1, true));
 		serialNumberTextField.setHorizontalAlignment(SwingConstants.TRAILING);
 		serialNumberTextField.setColumns(10);
 		panel_4.add(serialNumberTextField);
@@ -252,10 +255,15 @@ public class MainGUI {
 			public void actionPerformed(ActionEvent e) {
 				bombInfo = new BombInfo(serialNumberTextField.getText(), (Integer) AABatteriesSpinner.getValue(), (Integer) DBatteriesSpinner.getValue(), 
 										(Integer) LitIndicatorsSpinner.getValue(), (Integer) UnlitIndicatorsSpinner.getValue());
+				bombInfoStateTextField.setIcon(new ImageIcon(MainGUI.class.getResource("/Icons/BombInfoGreen10x10.png")));
 			}
 		});
 		bombInfoValidateButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		panel_7.add(bombInfoValidateButton);
+		
+		bombInfoStateTextField = new JLabel("");
+		bombInfoStateTextField.setIcon(new ImageIcon(MainGUI.class.getResource("/Icons/BombInfoRed10x10.png")));
+		panel_7.add(bombInfoStateTextField);
 		
 		scrollPane = new JScrollPane(list);
 		frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
@@ -265,7 +273,8 @@ public class MainGUI {
 			public void mousePressed(MouseEvent e) {
 				switch (list.getSelectedValue()) {
 					case "Wires":
-						new MainFils(bombInfo);
+						WiresGUI window = new WiresGUI(bombInfo);
+						window.frame.setVisible(true);
 				}
 			}
 		});
