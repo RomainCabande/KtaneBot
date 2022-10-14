@@ -49,6 +49,10 @@ public class BombInfo {
 		return this.nbUnlitIndicator;
 	}
 	
+	public int getBatteriesNumber() {
+		return this.nbAABattery + this.nbDBattery;
+	}
+	
 	public String toString() {
 		return "[" + this.serialNumber + ", AA Batteries : " + this.nbAABattery + ", D Batteries : " + this.nbDBattery + ", Lit Indicators : " + this.nbLitIndicator + ", Unlit Indicators : " + this.nbUnlitIndicator + "]"; 
 	}

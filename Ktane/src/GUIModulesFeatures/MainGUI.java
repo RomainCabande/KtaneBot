@@ -27,6 +27,7 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.LineBorder;
 
+import Button.ButtonGUI;
 import Wires.MainFils;
 import Wires.WiresGUI;
 
@@ -275,6 +276,9 @@ public class MainGUI {
 					case "Wires":
 						WiresGUI window = new WiresGUI(bombInfo);
 						window.frame.setVisible(true);
+					case "Button":
+						ButtonGUI window2 = new ButtonGUI(bombInfo);
+						window2.frame.setVisible(true);
 				}
 			}
 		});
