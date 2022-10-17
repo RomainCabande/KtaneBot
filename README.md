@@ -7,3 +7,4 @@ Modules done:
  
 Modules WIP:
  - Keypads
+ - MorseCode
