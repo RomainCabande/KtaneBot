@@ -113,6 +113,11 @@ public class ButtonGUI {
 		frame.getContentPane().add(panel_2, BorderLayout.SOUTH);
 		
 		JButton btnNewButton = new JButton("Cancel");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
 		panel_2.add(btnNewButton);
 	}
 
