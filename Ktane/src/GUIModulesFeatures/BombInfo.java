@@ -33,6 +33,19 @@ public class BombInfo {
 		return Integer.parseInt(list.get(list.size()-1));
 	}
 	
+	public boolean isSerialNumberContainsVowel() {
+		boolean bool = false;
+		for(int i = 0; i < this.serialNumber.length(); i ++) {
+			if(this.serialNumber.charAt(i) == 'A' || this.serialNumber.charAt(i) == 'E' ||
+				this.serialNumber.charAt(i) == 'I' || this.serialNumber.charAt(i) == 'O' ||
+				this.serialNumber.charAt(i) == 'U') 
+			{
+				bool = true;
+			}
+		}
+		return bool;
+	}
+	
 	public int getAABatteries() {
 		return this.nbAABattery;
 	}
