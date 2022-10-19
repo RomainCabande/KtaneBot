@@ -28,6 +28,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.border.LineBorder;
 
 import Button.ButtonGUI;
+import SimonSays.SimonSaysGUI;
 import Wires.MainFils;
 import Wires.WiresGUI;
 
@@ -276,9 +277,15 @@ public class MainGUI {
 					case "Wires":
 						WiresGUI window = new WiresGUI(bombInfo);
 						window.frame.setVisible(true);
+						break;
 					case "Button":
 						ButtonGUI window2 = new ButtonGUI(bombInfo);
 						window2.frame.setVisible(true);
+						break;
+					case "Simon Says":
+						SimonSaysGUI window3 = new SimonSaysGUI(bombInfo);
+						window3.frame.setVisible(true);
+						break;
 				}
 			}
 		});

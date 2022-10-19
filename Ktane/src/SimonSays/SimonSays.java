@@ -17,25 +17,25 @@ public class SimonSays {
 		if(this.bombInfo.isSerialNumberContainsVowel()) {
 			for(int i = 0; i < this.sequence.length(); i++) {
 				if(this.sequence.charAt(i) == 'R') {
-					string += 'B';
+					string += "Blue ";
 				} else if(this.sequence.charAt(i) == 'B') {
-					string += 'R';
+					string += "Red ";
 				} else if(this.sequence.charAt(i) == 'G') {
-					string += 'Y';
+					string += "Yellow ";
 				} else if(this.sequence.charAt(i) == 'Y') {
-					string += 'G';
+					string += "Green ";
 				}
 			}
 		} else {
 			for(int i = 0; i < this.sequence.length(); i++) {
 				if(this.sequence.charAt(i) == 'R') {
-					string += 'B';
+					string += "Blue ";
 				} else if(this.sequence.charAt(i) == 'B') {
-					string += 'Y';
+					string += "Yellow ";
 				} else if(this.sequence.charAt(i) == 'G') {
-					string += 'G';
+					string += "Green ";
 				} else if(this.sequence.charAt(i) == 'Y') {
-					string += 'R';
+					string += "Red ";
 				}
 			}
 		}

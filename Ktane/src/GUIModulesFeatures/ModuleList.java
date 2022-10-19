@@ -5,7 +5,7 @@ import java.util.List;
 
 public class ModuleList {
 	
-	private String[] modules = {"Wires", "Button"};
+	private String[] modules = {"Wires", "Button", "Simon Says"};
 	private List<String> listModules;
 	
 	public ModuleList() {
