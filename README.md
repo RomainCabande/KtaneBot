@@ -6,5 +6,4 @@ Modules done:
  - Button
  
 Modules WIP:
- - Keypads
  - MorseCode
