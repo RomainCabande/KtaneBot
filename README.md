@@ -5,6 +5,7 @@ Modules done:
  - Wires
  - Button
  - Keypads
+ - Simon Says
  
 Modules WIP:
  - MorseCode
