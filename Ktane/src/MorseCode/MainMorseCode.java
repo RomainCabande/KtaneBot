@@ -16,9 +16,9 @@ public class MainMorseCode {
 		final ArrayList<String> beats = new ArrayList<String>(Arrays.asList("beats".split(""))); 
 		System.out.println(beats);
 		MorseCode test = new MorseCode();
-		test.addLetter("b");
+		test.addLetter("h");
 		test.addLetter("e");
-		test.addLetter("k");
+		test.addLetter("s");
 		System.out.println(test.testIn());
 	}
 }
