@@ -290,7 +290,7 @@ public class MainGUI {
 						SimonSaysGUI window3 = new SimonSaysGUI(bombInfo);
 						window3.frame.setVisible(true);
 						break;
-				}
+					}
 				}
 			}
 		});
