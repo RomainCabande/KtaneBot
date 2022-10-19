@@ -17,6 +17,7 @@ import java.awt.event.ActionListener;
 import javax.swing.UIManager;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Dimension;
@@ -273,7 +274,10 @@ public class MainGUI {
 		list.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				switch (list.getSelectedValue()) {
+				if(bombInfo == null) {
+					JOptionPane.showMessageDialog(frame, "Error: validate bomb information before proceeding");
+				} else {
+					switch (list.getSelectedValue()) {
 					case "Wires":
 						WiresGUI window = new WiresGUI(bombInfo);
 						window.frame.setVisible(true);
@@ -286,6 +290,7 @@ public class MainGUI {
 						SimonSaysGUI window3 = new SimonSaysGUI(bombInfo);
 						window3.frame.setVisible(true);
 						break;
+				}
 				}
 			}
 		});
