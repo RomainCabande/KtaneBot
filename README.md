@@ -9,3 +9,12 @@ Modules done:
  
 Modules WIP:
  - MorseCode
+ 
+TODO:
+ - Who's on First
+ - Memory
+ - Complicated Wires
+ - Wire Sequences
+ - Mazes
+ - Passwords
+ - (Knobs)
