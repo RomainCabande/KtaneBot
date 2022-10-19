@@ -127,15 +127,6 @@ public class KeypadsGUI {
 		});
 		btnCancel.setBounds(433, 280, 85, 21);
 		frmKeypads.getContentPane().add(btnCancel);
-		
-		
-	}
-	private class SwingAction extends AbstractAction {
-		public SwingAction() {
-			putValue(NAME, "SwingAction");
-			putValue(SHORT_DESCRIPTION, "Some short description");
-		}
-		public void actionPerformed(ActionEvent e) {
-		}
+
 	}
 }
