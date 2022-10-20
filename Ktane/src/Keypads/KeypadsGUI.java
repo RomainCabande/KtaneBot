@@ -24,7 +24,7 @@ import javax.swing.JLabel;
 public class KeypadsGUI {
 
 	private HashSet<enumSignes> signes;
-	private JFrame frmKeypads;
+	public JFrame frmKeypads;
 	private static final int fontSigneTaille = 18;
 	private ArrayList<JToggleButton> tglb;
 	private static final ArrayList<enumSignes> signesList = new ArrayList<enumSignes>(Arrays.asList(enumSignes.values()));

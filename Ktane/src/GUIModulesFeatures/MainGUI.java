@@ -29,6 +29,8 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.border.LineBorder;
 
 import Button.ButtonGUI;
+import Keypads.Keypads;
+import Keypads.KeypadsGUI;
 import SimonSays.SimonSaysGUI;
 import Wires.MainFils;
 import Wires.WiresGUI;
@@ -290,6 +292,9 @@ public class MainGUI {
 						SimonSaysGUI window3 = new SimonSaysGUI(bombInfo);
 						window3.frame.setVisible(true);
 						break;
+					case "Keypads":
+						KeypadsGUI window4 = new KeypadsGUI();
+						window4.frmKeypads.setVisible(true);
 					}
 				}
 			}
