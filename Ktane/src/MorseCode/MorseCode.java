@@ -55,17 +55,16 @@ public class MorseCode {
 		this.letters.add(letter);
 	}
 	
-	public String testIn() {
+	public ArrayList<String> testIn() {
 		ArrayList<String> ret = new ArrayList<>();
 		 ret.add("letters : " + letters);
 		for(int i = 0; i < lettersToFreq.size(); i++) {
 			if(MorseCode.listOfWords.get(i).containsAll(letters)) {
-				ret.add(MorseCode.listOfWords.get(i) + ": " + lettersToFreq.get(charToString(MorseCode.listOfWords.get(i))));
+				ret.add(charToString(MorseCode.listOfWords.get(i))+ ": " + lettersToFreq.get(charToString(MorseCode.listOfWords.get(i))));
 			}
 			
 		}
-		String aaa = "" + ret;
-		return aaa;
+		return ret;
 	}
 	
 	public String charToString(ArrayList<String> listChar) {

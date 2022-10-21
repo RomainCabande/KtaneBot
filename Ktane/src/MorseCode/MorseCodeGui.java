@@ -113,10 +113,10 @@ public class MorseCodeGui {
 			      morseTextField.setText("");
 			      MorseTranslator translate = new MorseTranslator();
 			      morsecode.addLetter(translate.translateToChar(textFieldValue));
-			      String toPrint = morsecode.testIn();
-			      //for(int i = 0; i<toPrint.size(); i++) {
-			    	  listAnswers.addElement(toPrint);
-			      //}
+			      ArrayList<String> toPrint = morsecode.testIn();
+			      for(int i = 0; i<toPrint.size(); i++) {
+			    	  listAnswers.addElement(toPrint.get(i));
+			      }
 			      list.setModel(listAnswers);
 			      
 			      
