@@ -23,6 +23,7 @@ import java.awt.Font;
 import java.awt.List;
 import javax.swing.JMenu;
 import javax.swing.JList;
+import java.awt.Insets;
 
 public class MorseCodeGui {
 
@@ -75,20 +76,21 @@ public class MorseCodeGui {
 		panel.add(cancelBtn);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setPreferredSize(new Dimension(10, 50));
+		panel_1.setPreferredSize(new Dimension(10, 70));
 		frame.getContentPane().add(panel_1, BorderLayout.NORTH);
 		panel_1.setLayout(new GridLayout(2, 1, 0, 0));
 		
 		JPanel panel_3 = new JPanel();
 		panel_1.add(panel_3);
 		
-		JLabel instructionLabel = new JLabel("Press \".\" for dot and \"-\" for dash | press ENTER after every character.");
+		JLabel instructionLabel = new JLabel("Press '.' for dot and '/' for dash | press ENTER after every character.");
 		instructionLabel.setPreferredSize(new Dimension(390, 13));
 		instructionLabel.setMaximumSize(new Dimension(500, 13));
 		panel_3.add(instructionLabel);
 		instructionLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		
 		JPanel panel_2 = new JPanel();
+		panel_2.setPreferredSize(new Dimension(10, 1000));
 		panel_1.add(panel_2);
 		panel_2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
@@ -96,7 +98,9 @@ public class MorseCodeGui {
 		panel_2.add(morseTextField);
 		morseTextField.setColumns(10);
 		
+		
 		JPanel panel_4 = new JPanel();
+		panel_4.setPreferredSize(new Dimension(10, 100));
 		frame.getContentPane().add(panel_4, BorderLayout.CENTER);
 		panel_4.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
@@ -123,6 +127,15 @@ public class MorseCodeGui {
 			     
 			   }
 			});
+
+		JButton btnRemove = new JButton("remove last");
+		btnRemove.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int index = list.getSelectedIndex();
+			    //.removeElementAt(index);
+			}
+		});
+		panel_2.add(btnRemove);
 			
 		
 	}
