@@ -8,7 +8,7 @@ public class MorseTranslator {
     private HashMap<String, Character> alphabet = new HashMap<>();
 
     public MorseTranslator() {
-        alphabet.put("/", ' ');
+        //alphabet.put("/", ' ');
         alphabet.put(".-", 'A');
         alphabet.put("-...", 'B');
         alphabet.put("-.-.", 'C');
@@ -38,7 +38,7 @@ public class MorseTranslator {
     }
 
     
-    public String translateToMorse(String morseLetter) {
+    public String translateToChar(String morseLetter) {
         String translatedSentence = "";
         translatedSentence += alphabet.get(morseLetter);
         return translatedSentence;

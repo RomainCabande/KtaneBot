@@ -11,8 +11,8 @@ public class MainMorseCode {
 		// TODO Auto-generated method stub
 		MorseCode test = new MorseCode();
 		test.addLetter("h");
-		test.addLetter("e");
-		test.addLetter("s");
+		//test.addLetter("e");
+		//test.addLetter("s");
 		System.out.println(test.testIn());
 	}
 }
