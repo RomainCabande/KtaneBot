@@ -9,9 +9,9 @@ Modules done:
  
 Modules WIP:
  - MorseCode
+ - Who's on First
  
 TODO:
- - Who's on First
  - Memory
  - Complicated Wires
  - Wire Sequences
