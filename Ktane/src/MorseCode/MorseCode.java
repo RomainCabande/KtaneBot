@@ -52,7 +52,9 @@ public class MorseCode {
 	}
 	
 	public void addLetter(String letter) {
-		this.letters.add(letter);
+		if(!letter.equals("null")) {
+			this.letters.add(letter);
+		}
 	}
 	
 	public ArrayList<String> testIn() {
@@ -73,6 +75,16 @@ public class MorseCode {
 			ret += listChar.get(i);
 		}
 		return ret;
+	}
+	
+	public void removeLastElement() {
+		this.letters.remove(letters.size() - 1);
+	}
+	
+	public void removeAllChar(){
+		for(int i = letters.size(); i > 0; i--) {
+			removeLastElement();
+		}
 	}
 	
 }

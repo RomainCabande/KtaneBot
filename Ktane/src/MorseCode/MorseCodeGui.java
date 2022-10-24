@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
 
+import javax.swing.Action;
 import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -73,7 +74,8 @@ public class MorseCodeGui {
 				frame.dispose();
 			}
 		});
-		panel.add(cancelBtn);
+		
+		
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setPreferredSize(new Dimension(10, 70));
@@ -122,17 +124,34 @@ public class MorseCodeGui {
 			    	  listAnswers.addElement(toPrint.get(i));
 			      }
 			      list.setModel(listAnswers);
-			      
-			      
-			     
 			   }
 			});
+		
+		JButton btnRemoveAll = new JButton("Remove All");
+		btnRemoveAll.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				morsecode.removeAllChar();
+				ArrayList<String> toPrint = morsecode.testIn();
+				DefaultListModel<String> listAnswers = new DefaultListModel<String>();
+				for(int i = 0; i<toPrint.size(); i++) {
+					listAnswers.addElement(toPrint.get(i));
+			    }
+			    list.setModel(listAnswers);
+			}
+		});
+		panel.add(btnRemoveAll);
+		panel.add(cancelBtn);
 
 		JButton btnRemove = new JButton("remove last");
 		btnRemove.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int index = list.getSelectedIndex();
-			    //.removeElementAt(index);
+				morsecode.removeLastElement();
+			    ArrayList<String> toPrint = morsecode.testIn();
+				DefaultListModel<String> listAnswers = new DefaultListModel<String>();
+				for(int i = 0; i<toPrint.size(); i++) {
+					listAnswers.addElement(toPrint.get(i));
+			    }
+			    list.setModel(listAnswers);
 			}
 		});
 		panel_2.add(btnRemove);
