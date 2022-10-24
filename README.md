@@ -6,15 +6,15 @@ Modules done:
  - Button
  - Keypads
  - Simon Says
+ - Morse Code
+ - Who's On First
  
 Modules WIP:
- - MorseCode
- - Who's on First
+ - Passwords
  
 TODO:
  - Memory
  - Complicated Wires
  - Wire Sequences
  - Mazes
- - Passwords
  - (Knobs)

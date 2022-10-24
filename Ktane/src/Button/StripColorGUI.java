@@ -58,8 +58,9 @@ public class StripColorGUI {
 	 */
 	private void initialize(Button button) {
 		frame = new JFrame();
+		frame.setResizable(false);
 		frame.setBounds(100, 100, 450, 220);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(220, 220, 220));

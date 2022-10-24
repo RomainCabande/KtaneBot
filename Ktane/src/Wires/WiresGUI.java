@@ -64,12 +64,12 @@ public class WiresGUI {
 	 */
 	private void initialize(BombInfo bombInfo) {
 		frame = new JFrame();
+		frame.setResizable(false);
 		frame.setBounds(100, 100, 450, 348);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		
 		JPanel topLabelPanel = new JPanel();
 		topLabelPanel.setBackground(SystemColor.menu);
-		topLabelPanel.setBorder(new LineBorder(new Color(128, 128, 128), 2));
 		frame.getContentPane().add(topLabelPanel, BorderLayout.NORTH);
 		
 		JLabel topLabel = new JLabel("WIRES");
@@ -78,7 +78,6 @@ public class WiresGUI {
 		
 		JPanel bottomPanel = new JPanel();
 		bottomPanel.setBackground(SystemColor.menu);
-		bottomPanel.setBorder(new LineBorder(new Color(128, 128, 128), 2));
 		frame.getContentPane().add(bottomPanel, BorderLayout.SOUTH);
 		bottomPanel.setLayout(new BorderLayout(0, 0));
 		
