@@ -74,9 +74,9 @@ public class WhosOnFirst {
 	
 	public String solveModule() {
 		List<String> list = this.hashmapWordsToClick.get(this.getMiddleWordForSolving()); 
-		for(int i = 0; i < this.listMiddleWords.size(); i++) {
-			if(list.contains(this.listMiddleWords.get(i).toString())) {
-				return list.get(list.indexOf(this.listMiddleWords.get(i).toString()));
+		for(int i = 0; i < list.size(); i++) {
+			if(this.listMiddleWords.toString().contains(list.get(i))) {
+				return list.get(i);
 			}
 		}
 		return null;
