@@ -62,7 +62,7 @@ public class KeypadsGUI {
 		frmKeypads = new JFrame();
 		frmKeypads.setTitle("Keypads");
 		frmKeypads.setBounds(100, 100, 542, 348);
-		frmKeypads.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmKeypads.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		frmKeypads.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();

@@ -55,8 +55,9 @@ public class ButtonGUI {
 	 */
 	private void initialize(BombInfo bombInfo) {
 		frame = new JFrame();
+		frame.setResizable(false);
 		frame.setBounds(100, 100, 450, 215);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(220, 220, 220));

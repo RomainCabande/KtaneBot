@@ -27,7 +27,7 @@ import java.awt.Insets;
 
 public class MorseCodeGui {
 
-	private JFrame frame;
+	public JFrame frame;
 	private JTextField morseTextField;
 
 	/**
@@ -61,7 +61,7 @@ public class MorseCodeGui {
 		MorseCode morsecode = new MorseCode();
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.SOUTH);

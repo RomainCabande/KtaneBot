@@ -31,7 +31,10 @@ import javax.swing.border.LineBorder;
 import Button.ButtonGUI;
 import Keypads.Keypads;
 import Keypads.KeypadsGUI;
+import MorseCode.MorseCodeGui;
 import SimonSays.SimonSaysGUI;
+import WhosOnFirst.WhosOnFirst;
+import WhosOnFirst.WhosOnFirstGUI;
 import Wires.MainFils;
 import Wires.WiresGUI;
 
@@ -295,6 +298,16 @@ public class MainGUI {
 					case "Keypads":
 						KeypadsGUI window4 = new KeypadsGUI();
 						window4.frmKeypads.setVisible(true);
+						break;
+					case "Morse Code":
+						MorseCodeGui window5 = new MorseCodeGui();
+						window5.frame.setVisible(true);
+						break;
+					case "Who's On First":
+						WhosOnFirstGUI window6 = new WhosOnFirstGUI();
+						window6.frame.setVisible(true);
+						break;
+					
 					}
 				}
 			}

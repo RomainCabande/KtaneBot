@@ -28,7 +28,7 @@ import javax.swing.JComboBox;
 
 public class WhosOnFirstGUI {
 
-	private JFrame frame;
+	public JFrame frame;
 	private JTextField displayTextField;
 
 	/**
@@ -59,8 +59,9 @@ public class WhosOnFirstGUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setResizable(false);
 		frame.setBounds(100, 100, 450, 375);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		
 		JPanel topPanel = new JPanel();
 		frame.getContentPane().add(topPanel, BorderLayout.NORTH);

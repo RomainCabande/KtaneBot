@@ -60,7 +60,7 @@ public class SimonSaysGUI {
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 450, 369);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		
 		JPanel middlePanel = new JPanel();
 		frame.getContentPane().add(middlePanel, BorderLayout.CENTER);
