@@ -23,6 +23,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.awt.event.ActionEvent;
 import java.awt.List;
+import java.awt.FlowLayout;
+import javax.swing.JButton;
+import java.awt.ComponentOrientation;
 
 public class PasswordsGui {
 
@@ -69,12 +72,27 @@ public class PasswordsGui {
 		
 		JPanel answerPanel = new JPanel();
 		frame.getContentPane().add(answerPanel, BorderLayout.CENTER);
+		answerPanel.setLayout(new BorderLayout(0, 0));
 		
-		JPanel panel = new JPanel();
-		answerPanel.add(panel);
+		JPanel panelBottom = new JPanel();
+		answerPanel.add(panelBottom, BorderLayout.SOUTH);
+		panelBottom.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
+		
+		JButton cancelBtn = new JButton("cancel");
+		cancelBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
+		
+		
+		JPanel panelCenterList = new JPanel();
+		answerPanel.add(panelCenterList, BorderLayout.CENTER);
 		
 		JList<String> answerList = new JList<String>();
-		answerPanel.add(answerList);
+		cancelBtn.setHorizontalAlignment(SwingConstants.CENTER);
+		cancelBtn.setHorizontalTextPosition(SwingConstants.CENTER);
+		panelCenterList.add(answerList, BorderLayout.CENTER);
 		
 		JPanel inputPanel = new JPanel();
 		inputPanel.setPreferredSize(new Dimension(10, 100));
@@ -161,7 +179,19 @@ public class PasswordsGui {
 		ffthTextFieldPanel.add(ffthTextField);
 		ffthTextField.setColumns(10);
 		
-		
+		JButton rmvBtn = new JButton("remove All");
+		rmvBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DefaultListModel<String> voidModel = new DefaultListModel<String>();
+				answerList.setModel(voidModel);
+				password.refillList();
+				firstTextField.setText("");
+				thrdTextField.setText("");
+				ffthTextField.setText("");
+			}
+		});
+		panelBottom.add(rmvBtn);
+		panelBottom.add(cancelBtn);
 		
 		
 	}

@@ -9,7 +9,7 @@ public class Passwords {
 	private static final ArrayList<ArrayList<String>> listWords =  new ArrayList<ArrayList<String>>() ;
 	private ArrayList<ArrayList<String>> listLetters = new ArrayList<ArrayList<String>>();
 	private ArrayList<Boolean> isFullList = new ArrayList<Boolean>(Arrays.asList(false, false, false));
-	private ArrayList<ArrayList<String>> listWordsReduced = listWords;
+	private ArrayList<ArrayList<String>> listWordsReduced;
 
 	
 	
@@ -22,8 +22,9 @@ public class Passwords {
 		for(int i = 0; i < 3; i++) {
 			listLetters.add(inpt);
 		}
+		listWordsReduced = new ArrayList<ArrayList<String>>(listWords);
 	}
-	
+
 	public void addLetter(String str, int i) {
 		HashSet<String> add = new HashSet<String>(Arrays.asList(str.split("")));
 		listLetters.set(i, new ArrayList<String>(add));
@@ -56,4 +57,10 @@ public class Passwords {
 		return listWordsReduced;
 	}
 	
+	public void refillList() {
+		listWordsReduced.removeAll(listWordsReduced);
+		for(int i = 0; i < words.size(); i++) {
+			listWordsReduced.add(listWords.get(i));
+		}
+	}
 }
