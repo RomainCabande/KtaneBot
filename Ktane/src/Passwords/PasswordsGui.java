@@ -2,24 +2,37 @@ package Passwords;
 
 import java.awt.EventQueue;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.Dimension;
 import javax.swing.JLabel;
+import javax.swing.JList;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import MorseCode.MorseTranslator;
+
 import java.awt.Component;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.awt.event.ActionEvent;
+import java.awt.List;
 
 public class PasswordsGui {
 
 	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField firstTextField;
+	private JTextField thrdTextField;
+	private JTextField ffthTextField;
+    Passwords password = new Passwords();
 
+	
 	/**
 	 * Launch the application.
 	 */
@@ -35,6 +48,8 @@ public class PasswordsGui {
 			}
 		});
 	}
+	
+	
 
 	/**
 	 * Create the application.
@@ -50,15 +65,25 @@ public class PasswordsGui {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		ArrayList<JTextField> textFieldList = new ArrayList<JTextField>(Arrays.asList(firstTextField, thrdTextField, ffthTextField));
+		
+		JPanel answerPanel = new JPanel();
+		frame.getContentPane().add(answerPanel, BorderLayout.CENTER);
 		
 		JPanel panel = new JPanel();
-		panel.setPreferredSize(new Dimension(10, 100));
-		frame.getContentPane().add(panel, BorderLayout.NORTH);
-		panel.setLayout(new GridLayout(2, 3, 0, 0));
+		answerPanel.add(panel);
 		
-		JPanel panel_1 = new JPanel();
-		panel.add(panel_1);
-		panel_1.setLayout(new BorderLayout(0, 0));
+		JList<String> answerList = new JList<String>();
+		answerPanel.add(answerList);
+		
+		JPanel inputPanel = new JPanel();
+		inputPanel.setPreferredSize(new Dimension(10, 100));
+		frame.getContentPane().add(inputPanel, BorderLayout.NORTH);
+		inputPanel.setLayout(new GridLayout(2, 3, 0, 0));
+		
+		JPanel firstLabelPanel = new JPanel();
+		inputPanel.add(firstLabelPanel);
+		firstLabelPanel.setLayout(new BorderLayout(0, 0));
 		
 		JLabel firstLabel = new JLabel("1st Character");
 		firstLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -66,48 +91,94 @@ public class PasswordsGui {
 		firstLabel.setMinimumSize(new Dimension(70, 13));
 		firstLabel.setMaximumSize(new Dimension(70, 13));
 		firstLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		panel_1.add(firstLabel);
+		firstLabelPanel.add(firstLabel);
 		
-		JPanel panel_2 = new JPanel();
-		panel.add(panel_2);
-		panel_2.setLayout(new BorderLayout(0, 0));
+		JPanel thrdLabelPanel = new JPanel();
+		inputPanel.add(thrdLabelPanel);
+		thrdLabelPanel.setLayout(new BorderLayout(0, 0));
 		
 		JLabel thrdLabel = new JLabel("3rd Character");
 		thrdLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		thrdLabel.setPreferredSize(new Dimension(75, 13));
 		thrdLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		panel_2.add(thrdLabel);
+		thrdLabelPanel.add(thrdLabel);
 		
-		JPanel panel_3 = new JPanel();
-		panel.add(panel_3);
-		panel_3.setLayout(new BorderLayout(0, 0));
+		JPanel ffthLabelPanel = new JPanel();
+		inputPanel.add(ffthLabelPanel);
+		ffthLabelPanel.setLayout(new BorderLayout(0, 0));
 		
 		JLabel ffthLabel = new JLabel("5th Character");
 		ffthLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		ffthLabel.setPreferredSize(new Dimension(75, 13));
 		ffthLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		panel_3.add(ffthLabel);
+		ffthLabelPanel.add(ffthLabel);
 		
-		JPanel panel_4 = new JPanel();
-		panel.add(panel_4);
+		JPanel firstTextFieldPanel = new JPanel();
+		inputPanel.add(firstTextFieldPanel);
 		
-		textField = new JTextField();
-		panel_4.add(textField);
-		textField.setColumns(10);
+		textFieldList.add(firstTextField);
+		textFieldList.add(thrdTextField);
+		textFieldList.add(ffthTextField);
 		
-		JPanel panel_5 = new JPanel();
-		panel.add(panel_5);
 		
-		textField_1 = new JTextField();
-		panel_5.add(textField_1);
-		textField_1.setColumns(10);
 		
-		JPanel panel_6 = new JPanel();
-		panel.add(panel_6);
+		firstTextField = new JTextField();
+		firstTextField.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DefaultListModel<String> listAnswers = actionTextField(firstTextField.getText(), 0);
+				DefaultListModel<String> clear = new DefaultListModel<String>();
+				answerList.setModel(clear);
+				answerList.removeAll();
+				answerList.setModel(listAnswers);
+			}
+		});
+		firstTextFieldPanel.add(firstTextField);
+		firstTextField.setColumns(10);
 		
-		textField_2 = new JTextField();
-		panel_6.add(textField_2);
-		textField_2.setColumns(10);
+		JPanel thrdTextFieldPanel = new JPanel();
+		inputPanel.add(thrdTextFieldPanel);
+		
+		thrdTextField = new JTextField();
+		thrdTextField.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				  DefaultListModel<String> listAnswers = actionTextField(thrdTextField.getText(), 1);
+			      answerList.setModel(listAnswers);
+			}
+		});
+		thrdTextFieldPanel.add(thrdTextField);
+		thrdTextField.setColumns(10);
+		
+		JPanel ffthTextFieldPanel = new JPanel();
+		inputPanel.add(ffthTextFieldPanel);
+		
+		ffthTextField = new JTextField();
+		ffthTextField.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				  DefaultListModel<String> listAnswers = actionTextField(ffthTextField.getText(), 2);
+			      answerList.setModel(listAnswers);
+			}
+		});
+		ffthTextFieldPanel.add(ffthTextField);
+		ffthTextField.setColumns(10);
+		
+		
+		
+		
+	}
+	public DefaultListModel<String> actionTextField(String text, int place) {
+		 DefaultListModel<String> listAnswers = new DefaultListModel<String>();
+		 listAnswers.removeAllElements();
+	     String textFieldValue = text;
+	     password.addLetter(textFieldValue, place);
+	     ArrayList<ArrayList<String>> listWords = password.wordSearch();
+	     ArrayList<String> toPrint = new ArrayList<String>();
+	     for(int i = 0; i < listWords.size(); i++) {
+	    	 toPrint.add(password.charToString(listWords.get(i)));
+	     } 
+	     for(int i = 0; i<toPrint.size(); i++) {
+	    	 listAnswers.addElement(toPrint.get(i));
+	     }
+	     return listAnswers;
 	}
 
 }

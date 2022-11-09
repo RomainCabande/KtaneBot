@@ -7,10 +7,12 @@ public class MainPasswords {
 		Passwords passc = new Passwords();
 		//System.out.println(passc.listWords());
 		
-		passc.addLetter1("wmlkj");
-		passc.addLetter3("ikkkk");
-		passc.addLetter5("hkkkkk");
+		passc.addLetter("wmlkj", 0);
+		passc.addLetter("kikkk", 1);
+		passc.addLetter("kkhkkk", 2);
 		System.out.println(passc.wordSearch());
+				
+		
 	}
 
 }
