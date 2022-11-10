@@ -8,13 +8,13 @@ Modules done:
  - Simon Says
  - Morse Code
  - Who's On First
+ - Passwords
  
 Modules WIP:
- - Passwords
+ - Complicated wires
  
 TODO:
  - Memory
- - Complicated Wires
  - Wire Sequences
  - Mazes
  - (Knobs)
