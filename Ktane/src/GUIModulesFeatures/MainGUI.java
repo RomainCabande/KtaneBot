@@ -32,6 +32,7 @@ import Button.ButtonGUI;
 import Keypads.Keypads;
 import Keypads.KeypadsGUI;
 import MorseCode.MorseCodeGui;
+import Passwords.PasswordsGui;
 import SimonSays.SimonSaysGUI;
 import WhosOnFirst.WhosOnFirst;
 import WhosOnFirst.WhosOnFirstGUI;
@@ -306,6 +307,10 @@ public class MainGUI {
 					case "Who's On First":
 						WhosOnFirstGUI window6 = new WhosOnFirstGUI();
 						window6.frame.setVisible(true);
+						break;
+					case "Passwords":
+						PasswordsGui window7 = new PasswordsGui();
+						window7.frame.setVisible(true);
 						break;
 					
 					}

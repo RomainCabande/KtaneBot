@@ -29,7 +29,7 @@ import java.awt.ComponentOrientation;
 
 public class PasswordsGui {
 
-	private JFrame frame;
+	public JFrame frame;
 	private JTextField firstTextField;
 	private JTextField thrdTextField;
 	private JTextField ffthTextField;
