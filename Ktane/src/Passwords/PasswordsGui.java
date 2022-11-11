@@ -29,11 +29,8 @@ import java.awt.ComponentOrientation;
 
 public class PasswordsGui {
 
-<<<<<<< Updated upstream
 	public JFrame frame;
-=======
 	private JFrame frmPasswords;
->>>>>>> Stashed changes
 	private JTextField firstTextField;
 	private JTextField thrdTextField;
 	private JTextField ffthTextField;
