@@ -28,7 +28,7 @@ import java.awt.Insets;
 
 public class MorseCodeGui {
 
-	public JFrame frame;
+	public JFrame frmMorsecode;
 	private JTextField morseTextField;
 
 	/**
@@ -39,7 +39,7 @@ public class MorseCodeGui {
 			public void run() {
 				try {
 					MorseCodeGui window = new MorseCodeGui();
-					window.frame.setVisible(true);
+					window.frmMorsecode.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -60,18 +60,19 @@ public class MorseCodeGui {
 	 */
 	private void initialize() {
 		MorseCode morsecode = new MorseCode();
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		frmMorsecode = new JFrame();
+		frmMorsecode.setTitle("MorseCode");
+		frmMorsecode.setBounds(100, 100, 450, 300);
+		frmMorsecode.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
-		frame.getContentPane().add(panel, BorderLayout.SOUTH);
+		frmMorsecode.getContentPane().add(panel, BorderLayout.SOUTH);
 		panel.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
 		
 		JButton cancelBtn = new JButton("cancel");
 		cancelBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
+				frmMorsecode.dispose();
 			}
 		});
 		
@@ -79,7 +80,7 @@ public class MorseCodeGui {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setPreferredSize(new Dimension(10, 70));
-		frame.getContentPane().add(panel_1, BorderLayout.NORTH);
+		frmMorsecode.getContentPane().add(panel_1, BorderLayout.NORTH);
 		panel_1.setLayout(new GridLayout(2, 1, 0, 0));
 		
 		JPanel panel_3 = new JPanel();
@@ -103,7 +104,7 @@ public class MorseCodeGui {
 		
 		JPanel panel_4 = new JPanel();
 		panel_4.setPreferredSize(new Dimension(10, 100));
-		frame.getContentPane().add(panel_4, BorderLayout.CENTER);
+		frmMorsecode.getContentPane().add(panel_4, BorderLayout.CENTER);
 		panel_4.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JList<String> list = new JList<String>();

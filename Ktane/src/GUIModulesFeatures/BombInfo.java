@@ -9,13 +9,15 @@ public class BombInfo {
 	private int nbDBattery;
 	private int nbLitIndicator;
 	private int nbUnlitIndicator;
+	private int nbParallelPort;
 	
-	public BombInfo(String serialNumber, int nbAABattery, int nbDBattery, int nbLitIndicators, int nbUnlitIndicators) {
+	public BombInfo(String serialNumber, int nbAABattery, int nbDBattery, int nbLitIndicators, int nbUnlitIndicators, int nbParallelPort) {
 		this.serialNumber = serialNumber;
 		this.nbAABattery = nbAABattery;
 		this.nbDBattery = nbDBattery;
 		this.nbLitIndicator = nbLitIndicators;
 		this.nbUnlitIndicator = nbUnlitIndicators;
+		this.nbParallelPort = nbParallelPort;
 	}
 	
 	public boolean isLastDigitOfSerialNumberEven() {
@@ -64,6 +66,14 @@ public class BombInfo {
 	
 	public int getBatteriesNumber() {
 		return this.nbAABattery + this.nbDBattery;
+	}
+	
+	public Boolean doesParallelPort() {
+		Boolean ret = false;
+		if(nbParallelPort != 0) {
+			ret = true;
+		}
+		return ret;
 	}
 	
 	public String toString() {

@@ -29,7 +29,11 @@ import java.awt.ComponentOrientation;
 
 public class PasswordsGui {
 
+<<<<<<< Updated upstream
 	public JFrame frame;
+=======
+	private JFrame frmPasswords;
+>>>>>>> Stashed changes
 	private JTextField firstTextField;
 	private JTextField thrdTextField;
 	private JTextField ffthTextField;
@@ -44,7 +48,7 @@ public class PasswordsGui {
 			public void run() {
 				try {
 					PasswordsGui window = new PasswordsGui();
-					window.frame.setVisible(true);
+					window.frmPasswords.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -65,13 +69,14 @@ public class PasswordsGui {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmPasswords = new JFrame();
+		frmPasswords.setTitle("Passwords");
+		frmPasswords.setBounds(100, 100, 450, 300);
+		frmPasswords.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ArrayList<JTextField> textFieldList = new ArrayList<JTextField>(Arrays.asList(firstTextField, thrdTextField, ffthTextField));
 		
 		JPanel answerPanel = new JPanel();
-		frame.getContentPane().add(answerPanel, BorderLayout.CENTER);
+		frmPasswords.getContentPane().add(answerPanel, BorderLayout.CENTER);
 		answerPanel.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panelBottom = new JPanel();
@@ -81,7 +86,7 @@ public class PasswordsGui {
 		JButton cancelBtn = new JButton("cancel");
 		cancelBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
+				frmPasswords.dispose();
 			}
 		});
 		
@@ -96,7 +101,7 @@ public class PasswordsGui {
 		
 		JPanel inputPanel = new JPanel();
 		inputPanel.setPreferredSize(new Dimension(10, 100));
-		frame.getContentPane().add(inputPanel, BorderLayout.NORTH);
+		frmPasswords.getContentPane().add(inputPanel, BorderLayout.NORTH);
 		inputPanel.setLayout(new GridLayout(2, 3, 0, 0));
 		
 		JPanel firstLabelPanel = new JPanel();
