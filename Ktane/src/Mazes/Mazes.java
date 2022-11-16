@@ -10,11 +10,21 @@ public class Mazes {
 	public Mazes(int tailleMaze) {
 		blocks = new ArrayList<ArrayList<Block>>(tailleMaze);
 	}
+	/*
+	public Mazes(int tailleMaze) {
+		blocks = new ArrayList<ArrayList<Block>>(tailleMaze);
+	}*/
 	
 	public void addRow(int rowNbr, ArrayList<Block> rowToAdd) {
 		for(int i = 0; i < rowToAdd.size(); i++) {
 			blocks.add(rowNbr, rowToAdd);
 		}
-	}	
+	}
+	
+	public void mazeGen() {
+		
+	}
+	
+	
 	
 }
