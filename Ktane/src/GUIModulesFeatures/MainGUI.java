@@ -45,20 +45,28 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.MatteBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
+import java.awt.Rectangle;
 
 public class MainGUI {
 
 	private JFrame frame;
-	private Panel panel_1;
-	private Panel panel_2;
-	private JPanel panel_3;
-	private JPanel panel_4;
+	private Panel searchPanel;
+	private Panel bombInfoPanel;
+	private JPanel indicatorsPanel;
+	private JPanel serialNumberPanel;
 	private JLabel serialNumberLabel;
 	private JTextField serialNumberTextField;
 	private JLabel indicatorsLabel;
 	private JLabel LitIndicatorsLabel;
 	private JLabel UnlitIndicatorsLabel;
-	private JPanel panel_5;
+	private JPanel batteriesPanel;
 	private JLabel batteriesLabel;
 	private JLabel AABatteriesLabel;
 	private JLabel DBatteriesLabel;
@@ -66,15 +74,23 @@ public class MainGUI {
 	private JSpinner DBatteriesSpinner;
 	private JSpinner LitIndicatorsSpinner;
 	private JSpinner UnlitIndicatorsSpinner;
-	private JPanel panel_6;
-	private JLabel lblNewLabel;
-	private JTextField searchBar;
-	private JButton searchBarButton;
-	private JPanel panel_7;
+	private JPanel searchBarAreaPanel;
+	private JPanel validatePanel;
 	private JButton bombInfoValidateButton;
-	private JScrollPane scrollPane;
+	private JScrollPane modulesListScrollPane;
 	public BombInfo bombInfo;
 	private JLabel bombInfoStateTextField;
+	private JPanel parallelPortPanel;
+	private JLabel parrallelPortLabel;
+	private JSpinner parallelPortSpinner;
+	private JPanel mainLabelPanel;
+	private JLabel mainTitleLabel;
+	private JPanel searchBarPanel;
+	private JTextField searchBarTextField;
+	private JButton searchBarButton;
+	private JPanel emptyPanel;
+	private JPanel panel;
+	private JLabel searchBarLabel;
 
 	/**
 	 * Launch the application.
@@ -110,30 +126,50 @@ public class MainGUI {
 		
 		//added manually
 		ModuleList modules = new ModuleList();
-		//add modules.searchModule(searchBar.getText()) below inside parenthesis
+		Border border = new LineBorder(Color.BLACK, 1);
+		//add modules.searchModule(searchBarTextField.getText()) below inside parenthesis
 		JList<String> list = new JList<String>();
 		
-		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(Color.LIGHT_GRAY));
-		frame.getContentPane().add(panel, BorderLayout.NORTH);
-		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+		JPanel head = new JPanel();
+		head.setBorder(new LineBorder(new Color(192, 192, 192)));
+		frame.getContentPane().add(head, BorderLayout.NORTH);
+		head.setLayout(new BoxLayout(head, BoxLayout.X_AXIS));
 		
-		panel_1 = new Panel();
-		panel.add(panel_1);
-		panel_1.setLayout(new BorderLayout(0, 0));
+		searchPanel = new Panel();
+		head.add(searchPanel);
+		searchPanel.setLayout(new BorderLayout(0, 0));
 		
-		panel_6 = new JPanel();
-		panel_6.setBorder(null);
-		panel_1.add(panel_6, BorderLayout.CENTER);
+		searchBarAreaPanel = new JPanel();
+		searchBarAreaPanel.setBorder(null);
+		searchPanel.add(searchBarAreaPanel, BorderLayout.CENTER);
+		searchBarAreaPanel.setLayout(new GridLayout(2, 1, 0, 0));
 		
-		lblNewLabel = new JLabel("Search Module : ");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-		panel_6.add(lblNewLabel);
+		emptyPanel = new JPanel();
+		searchBarAreaPanel.add(emptyPanel);
+		emptyPanel.setLayout(new BorderLayout(0, 0));
 		
-		searchBar = new JTextField();
-		searchBar.addKeyListener(new KeyAdapter() {
+		panel = new JPanel();
+		emptyPanel.add(panel, BorderLayout.SOUTH);
+		
+		searchBarLabel = new JLabel("Search By Name");
+		searchBarLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		panel.add(searchBarLabel);
+		
+		searchBarPanel = new JPanel();
+		searchBarAreaPanel.add(searchBarPanel);
+		
+		searchBarTextField = new JTextField();
+		searchBarTextField.setMinimumSize(new Dimension(70, 19));
+		searchBarTextField.setPreferredSize(new Dimension(70, 23));
+		searchBarTextField.setHorizontalAlignment(SwingConstants.LEFT);
+		searchBarTextField.setFont(new Font("Tahoma", Font.BOLD, 12));
+		searchBarTextField.setColumns(15);
+		searchBarTextField.setAlignmentY(1.0f);
+		searchBarTextField.setAlignmentX(1.0f);
+		searchBarPanel.add(searchBarTextField);
+		searchBarTextField.addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent e) {
-				String[] strings = (modules.searchModule(searchBar.getText()));
+				String[] strings = (modules.searchModule(searchBarTextField.getText()));
 				DefaultListModel<String> dlm = new DefaultListModel<String>();
 				dlm.removeAllElements();
 				for(int i = 0; i < strings.length; i++) {
@@ -142,19 +178,11 @@ public class MainGUI {
 				list.setModel(dlm);
 			}
 		});
-		
-		searchBar.setHorizontalAlignment(SwingConstants.LEFT);
-		searchBar.setFont(new Font("Tahoma", Font.BOLD, 12));
-		searchBar.setColumns(15);
-		searchBar.setBorder(UIManager.getBorder("ComboBox.border"));
-		searchBar.setAlignmentY(1.0f);
-		searchBar.setAlignmentX(1.0f);
-		panel_6.add(searchBar);
 		
 		searchBarButton = new JButton("");
 		searchBarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String[] strings = (modules.searchModule(searchBar.getText()));
+				String[] strings = (modules.searchModule(searchBarTextField.getText()));
 				DefaultListModel<String> dlm = new DefaultListModel<String>();
 				dlm.removeAllElements();
 				for(int i = 0; i < strings.length; i++) {
@@ -163,119 +191,143 @@ public class MainGUI {
 				list.setModel(dlm);
 			}
 		});
-		
-		
 		searchBarButton.setIcon(new ImageIcon(MainGUI.class.getResource("/Icons/Search15x15.png")));
 		searchBarButton.setMaximumSize(new Dimension(20, 21));
-		searchBarButton.setMargin(new Insets(1, 1, 1, 1));
-		panel_6.add(searchBarButton);
+		searchBarButton.setMargin(new Insets(0, 0, 0, 0));
+		searchBarPanel.add(searchBarButton);
 		
-		panel_2 = new Panel();
-		panel.add(panel_2);
-		panel_2.setLayout(new GridLayout(4, 1, 0, 0));
+		mainLabelPanel = new JPanel();
+		FlowLayout flowLayout_1 = (FlowLayout) mainLabelPanel.getLayout();
+		flowLayout_1.setVgap(20);
+		searchPanel.add(mainLabelPanel, BorderLayout.NORTH);
 		
-		panel_4 = new JPanel();
-		FlowLayout flowLayout_2 = (FlowLayout) panel_4.getLayout();
-		flowLayout_2.setAlignment(FlowLayout.LEFT);
-		panel_2.add(panel_4);
+		mainTitleLabel = new JLabel("KTANE BOT");
+		mainTitleLabel.setBorder(null);
+		mainTitleLabel.setFont(new Font("OCR A Extended", Font.BOLD, 20));
+		mainLabelPanel.add(mainTitleLabel);
+		mainTitleLabel.setBorder(border);
 		
-		serialNumberLabel = new JLabel("Serial number         ");
+		bombInfoPanel = new Panel();
+		head.add(bombInfoPanel);
+		bombInfoPanel.setLayout(new GridLayout(5, 1, 0, 0));
+		
+		serialNumberPanel = new JPanel();
+		FlowLayout fl_serialNumberPanel = (FlowLayout) serialNumberPanel.getLayout();
+		fl_serialNumberPanel.setAlignment(FlowLayout.LEFT);
+		bombInfoPanel.add(serialNumberPanel);
+		
+		serialNumberLabel = new JLabel("Serial number  ");
 		serialNumberLabel.setVerticalAlignment(SwingConstants.BOTTOM);
 		serialNumberLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		serialNumberLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-		panel_4.add(serialNumberLabel);
+		serialNumberPanel.add(serialNumberLabel);
 		
 		serialNumberTextField = new JTextField();
 		serialNumberTextField.setBorder(new LineBorder(new Color(171, 173, 179), 1, true));
 		serialNumberTextField.setHorizontalAlignment(SwingConstants.TRAILING);
 		serialNumberTextField.setColumns(10);
-		panel_4.add(serialNumberTextField);
+		serialNumberPanel.add(serialNumberTextField);
 		
-		panel_5 = new JPanel();
-		FlowLayout flowLayout_1 = (FlowLayout) panel_5.getLayout();
-		flowLayout_1.setAlignment(FlowLayout.LEFT);
-		panel_2.add(panel_5);
+		batteriesPanel = new JPanel();
+		FlowLayout fl_batteriesPanel = (FlowLayout) batteriesPanel.getLayout();
+		fl_batteriesPanel.setAlignment(FlowLayout.LEFT);
+		bombInfoPanel.add(batteriesPanel);
 		
 		batteriesLabel = new JLabel("Batteries           ");
 		batteriesLabel.setVerticalAlignment(SwingConstants.BOTTOM);
 		batteriesLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		batteriesLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-		panel_5.add(batteriesLabel);
+		batteriesPanel.add(batteriesLabel);
 		
 		AABatteriesLabel = new JLabel("AA ");
 		AABatteriesLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		AABatteriesLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-		panel_5.add(AABatteriesLabel);
+		batteriesPanel.add(AABatteriesLabel);
 		
 		AABatteriesSpinner = new JSpinner();
 		AABatteriesSpinner.setModel(new SpinnerNumberModel(0, 0, 20, 1));
 		AABatteriesSpinner.setPreferredSize(new Dimension(40, 20));
 		AABatteriesSpinner.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		panel_5.add(AABatteriesSpinner);
+		batteriesPanel.add(AABatteriesSpinner);
 		
 		DBatteriesLabel = new JLabel("      D  ");
 		DBatteriesLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		DBatteriesLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-		panel_5.add(DBatteriesLabel);
+		batteriesPanel.add(DBatteriesLabel);
 		
 		DBatteriesSpinner = new JSpinner();
 		DBatteriesSpinner.setModel(new SpinnerNumberModel(0, 0, 20, 1));
 		DBatteriesSpinner.setPreferredSize(new Dimension(40, 20));
 		DBatteriesSpinner.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		panel_5.add(DBatteriesSpinner);
+		batteriesPanel.add(DBatteriesSpinner);
 		
-		panel_3 = new JPanel();
-		panel_2.add(panel_3);
-		FlowLayout fl_panel_3 = new FlowLayout(FlowLayout.LEFT, 5, 5);
-		fl_panel_3.setAlignOnBaseline(true);
-		panel_3.setLayout(fl_panel_3);
+		indicatorsPanel = new JPanel();
+		bombInfoPanel.add(indicatorsPanel);
+		FlowLayout fl_indicatorsPanel = new FlowLayout(FlowLayout.LEFT, 5, 5);
+		fl_indicatorsPanel.setAlignOnBaseline(true);
+		indicatorsPanel.setLayout(fl_indicatorsPanel);
 		
 		indicatorsLabel = new JLabel("Indicators         ");
 		indicatorsLabel.setVerticalAlignment(SwingConstants.BOTTOM);
 		indicatorsLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		indicatorsLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-		panel_3.add(indicatorsLabel);
+		indicatorsPanel.add(indicatorsLabel);
 		
 		LitIndicatorsLabel = new JLabel("Lit ");
 		LitIndicatorsLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-		panel_3.add(LitIndicatorsLabel);
+		indicatorsPanel.add(LitIndicatorsLabel);
 		
 		LitIndicatorsSpinner = new JSpinner();
 		LitIndicatorsSpinner.setPreferredSize(new Dimension(40, 20));
 		LitIndicatorsSpinner.setModel(new SpinnerNumberModel(0, 0, 20, 1));
 		LitIndicatorsSpinner.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		panel_3.add(LitIndicatorsSpinner);
+		indicatorsPanel.add(LitIndicatorsSpinner);
 		
 		UnlitIndicatorsLabel = new JLabel("  Unlit");
 		UnlitIndicatorsLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-		panel_3.add(UnlitIndicatorsLabel);
+		indicatorsPanel.add(UnlitIndicatorsLabel);
 		
 		UnlitIndicatorsSpinner = new JSpinner();
 		UnlitIndicatorsSpinner.setModel(new SpinnerNumberModel(0, 0, 20, 1));
 		UnlitIndicatorsSpinner.setPreferredSize(new Dimension(40, 20));
 		UnlitIndicatorsSpinner.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		panel_3.add(UnlitIndicatorsSpinner);
+		indicatorsPanel.add(UnlitIndicatorsSpinner);
 		
-		panel_7 = new JPanel();
-		panel_2.add(panel_7);
+		parallelPortPanel = new JPanel();
+		FlowLayout flowLayout = (FlowLayout) parallelPortPanel.getLayout();
+		flowLayout.setAlignment(FlowLayout.LEFT);
+		flowLayout.setVgap(6);
+		bombInfoPanel.add(parallelPortPanel);
+		
+		parrallelPortLabel = new JLabel("Parallel Ports   ");
+		parrallelPortLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
+		parallelPortPanel.add(parrallelPortLabel);
+		
+		parallelPortSpinner = new JSpinner();
+		parallelPortSpinner.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		parallelPortSpinner.setModel(new SpinnerNumberModel(0, 0, 20, 1));
+		parallelPortPanel.add(parallelPortSpinner);
+		
+		validatePanel = new JPanel();
+		bombInfoPanel.add(validatePanel);
 		
 		bombInfoValidateButton = new JButton("Valider");
 		bombInfoValidateButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				bombInfo = new BombInfo(serialNumberTextField.getText(), (Integer) AABatteriesSpinner.getValue(), (Integer) DBatteriesSpinner.getValue(), 
-										(Integer) LitIndicatorsSpinner.getValue(), (Integer) UnlitIndicatorsSpinner.getValue());
+										(Integer) LitIndicatorsSpinner.getValue(), (Integer) UnlitIndicatorsSpinner.getValue(), (Integer) parallelPortSpinner.getValue());
 				bombInfoStateTextField.setIcon(new ImageIcon(MainGUI.class.getResource("/Icons/BombInfoGreen10x10.png")));
 			}
 		});
 		bombInfoValidateButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		panel_7.add(bombInfoValidateButton);
+		validatePanel.add(bombInfoValidateButton);
 		
 		bombInfoStateTextField = new JLabel("");
 		bombInfoStateTextField.setIcon(new ImageIcon(MainGUI.class.getResource("/Icons/BombInfoRed10x10.png")));
-		panel_7.add(bombInfoStateTextField);
+		validatePanel.add(bombInfoStateTextField);
 		
-		scrollPane = new JScrollPane(list);
-		frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
+		modulesListScrollPane = new JScrollPane(list);
+		frame.getContentPane().add(modulesListScrollPane, BorderLayout.CENTER);
 		
 		list.addMouseListener(new MouseAdapter() {
 			@Override
@@ -302,7 +354,7 @@ public class MainGUI {
 						break;
 					case "Morse Code":
 						MorseCodeGui window5 = new MorseCodeGui();
-						window5.frame.setVisible(true);
+						window5.frmMorsecode.setVisible(true);
 						break;
 					case "Who's On First":
 						WhosOnFirstGUI window6 = new WhosOnFirstGUI();
