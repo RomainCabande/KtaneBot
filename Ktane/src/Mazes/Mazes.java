@@ -15,6 +15,6 @@ public class Mazes {
 		for(int i = 0; i < rowToAdd.size(); i++) {
 			blocks.add(rowNbr, rowToAdd);
 		}
-	}
+	}	
 	
 }
