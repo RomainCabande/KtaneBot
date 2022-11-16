@@ -362,7 +362,7 @@ public class MainGUI {
 						break;
 					case "Passwords":
 						PasswordsGui window7 = new PasswordsGui();
-						window7.frame.setVisible(true);
+						window7.frmPasswords.setVisible(true);
 						break;
 					
 					}
