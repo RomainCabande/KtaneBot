@@ -2,24 +2,32 @@ package Mazes;
 
 import java.util.ArrayList;
 
+import stdlib.StdDraw;
+
 public class Mazes {
 	private int row;
 	private int col;
+	private int taillMaze;
 	private ArrayList<ArrayList<Block>> blocks;
 	private int rowStart;
 	private int colStart;
 	private int rowEnd;
 	private int colEnd;
 	private Integer[][] coors;
+	private Boolean[][] visited;
 
 	public Mazes(int tailleMaze) {
 		blocks = new ArrayList<ArrayList<Block>>(tailleMaze);
-	}
-	/*
-	 * public Mazes(int tailleMaze) { blocks = new
-	 * ArrayList<ArrayList<Block>>(tailleMaze); }
-	 */
+		this.taillMaze = tailleMaze;
+		visited = new Boolean[tailleMaze][tailleMaze];
+		for(int i = 0; i < tailleMaze; i++) {
+			for(int j = 0; j < tailleMaze; j++) {
+				visited[i][j] = false;
+			}
 
+		}
+	}
+	
 	public void addRow(int rowNbr, ArrayList<Block> rowToAdd) {
 		for (int i = 0; i < rowToAdd.size(); i++) {
 			blocks.add(rowNbr, rowToAdd);
@@ -30,9 +38,13 @@ public class Mazes {
 		//StdDraw.setCanvasSize(width, height);
 
 	}
+	
+	public void getDirection(Integer[][] co1, Integer[][] co2) {
+		
+	}
 
 	public void solve() {
-		coors[]
+		coors = new Integer[colStart][rowStart];
 	}
 	
 	public void setRowStart(int rowStart) {
