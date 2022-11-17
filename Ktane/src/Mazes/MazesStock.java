@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class MazesStock {
 
 	public Mazes maze12() {
-		Mazes maze12 = new Mazes(8);
+		Mazes maze12 = new Mazes(6);
 
 		ArrayList<Block> row1 = new ArrayList<Block>();
 		row1.add(new Block(true, false, false, true)); //1-1

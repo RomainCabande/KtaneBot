@@ -6,6 +6,11 @@ public class Mazes {
 	private int row;
 	private int col;
 	private ArrayList<ArrayList<Block>> blocks;
+	private int rowStart;
+	private int colStart;
+	private int rowEnd;
+	private int colEnd;
+	private Integer[][] coors;
 
 	public Mazes(int tailleMaze) {
 		blocks = new ArrayList<ArrayList<Block>>(tailleMaze);
@@ -22,8 +27,28 @@ public class Mazes {
 	}
 
 	public void mazeGen() {
-		// StdDraw.setCanvasSize(width, height);
+		//StdDraw.setCanvasSize(width, height);
 
+	}
+
+	public void solve() {
+		coors[]
+	}
+	
+	public void setRowStart(int rowStart) {
+		this.rowStart = rowStart;
+	}
+
+	public void setColStart(int colStart) {
+		this.colStart = colStart;
+	}
+
+	public void setRowEnd(int rowEnd) {
+		this.rowEnd = rowEnd;
+	}
+
+	public void setColEnd(int colEnd) {
+		this.colEnd = colEnd;
 	}
 
 	@Override
@@ -41,7 +66,7 @@ public class Mazes {
 				}else if (blocks.get(i).get(j).getEastBlock().equals(false) && blocks.get(i).get(j+1).getWestBlock().equals(false)) {
 					ret += "O ";
 				}else {
-					ret += "error" + (j+1) + (j+2) + "/" + (i+1);
+					ret += ":error " + (j+1) + (j+2) + "/" + (i+1) + ":";
 				}
 			}
 			ret += "O|\n";
@@ -55,7 +80,7 @@ public class Mazes {
 					}else if (blocks.get(i).get(j).getSouthBlock().equals(false) && blocks.get(i+1).get(j).getNorthBlock().equals(false)) {
 						ret += "+ ";
 					}else {
-						ret += "error" + (j+1) + "/" + (i+1) + (i+2);
+						ret += ":error " + (j+1) + "/" + (i+1) + (i+2) + ":";
 					}
 				}
 			}	
@@ -63,4 +88,5 @@ public class Mazes {
 		}
 		return ret;
 	}
+	
 }
