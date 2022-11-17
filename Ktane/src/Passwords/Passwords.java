@@ -62,5 +62,7 @@ public class Passwords {
 		for(int i = 0; i < words.size(); i++) {
 			listWordsReduced.add(listWords.get(i));
 		}
+		System.out.println(listWords);
+		System.out.println(listWordsReduced);
 	}
 }

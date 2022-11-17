@@ -6,6 +6,7 @@ public class MainMazes {
 		// TODO Auto-generated method stub
 		MazesStock maze = new MazesStock();
 		Mazes maze12 = maze.maze12();
+		//System.out.println(maze12);
 		System.out.println(maze12);
 	}
 }
