@@ -22,8 +22,6 @@ public class Mazes {
 	}
 
 	public void mazeGen() {
-<<<<<<< Updated upstream
-=======
 		// StdDraw.setCanvasSize(width, height);
 
 	}
@@ -64,6 +62,5 @@ public class Mazes {
 			ret += "+\n";			
 		}
 		return ret;
->>>>>>> Stashed changes
 	}
 }
