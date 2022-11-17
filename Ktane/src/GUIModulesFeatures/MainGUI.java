@@ -29,6 +29,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.border.LineBorder;
 
 import Button.ButtonGUI;
+import ComplicatedWires.ComplicatedWiresGUI;
 import Keypads.Keypads;
 import Keypads.KeypadsGUI;
 import MorseCode.MorseCodeGui;
@@ -364,7 +365,10 @@ public class MainGUI {
 						PasswordsGui window7 = new PasswordsGui();
 						window7.frmPasswords.setVisible(true);
 						break;
-					
+					case "Complicated Wires":
+						ComplicatedWiresGUI window8 = new ComplicatedWiresGUI(bombInfo);
+						window8.frmComplicatedwires.setVisible(true);
+						break;
 					}
 				}
 			}

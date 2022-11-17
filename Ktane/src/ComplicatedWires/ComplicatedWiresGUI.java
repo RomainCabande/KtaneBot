@@ -25,7 +25,7 @@ import GUIModulesFeatures.BombInfo;
 
 public class ComplicatedWiresGUI {
 
-	private JFrame frmComplicatedwires;
+	public JFrame frmComplicatedwires;
 	private static BombInfo bombeInfo;
 
 	/**
