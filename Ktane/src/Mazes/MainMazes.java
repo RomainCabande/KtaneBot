@@ -8,5 +8,4 @@ public class MainMazes {
 		Mazes maze12 = maze.maze12();
 		System.out.println(maze12);
 	}
-
 }

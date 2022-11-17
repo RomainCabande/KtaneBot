@@ -22,7 +22,6 @@ public class Mazes {
 	}
 	
 	public void mazeGen() {
-		
 	}
 	
 	
