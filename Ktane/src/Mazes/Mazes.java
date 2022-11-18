@@ -13,10 +13,13 @@ public class Mazes {
 	private int colStart;
 	private int rowEnd;
 	private int colEnd;
-	private Integer[][] coors;
+	private int whereCol;
+	private int whereRow;
+	private Integer[][] stockBlockCost;
 	private Boolean[][] visited;
 
 	public Mazes(int tailleMaze) {
+
 		blocks = new ArrayList<ArrayList<Block>>(tailleMaze);
 		this.taillMaze = tailleMaze;
 		visited = new Boolean[tailleMaze][tailleMaze];
@@ -39,12 +42,80 @@ public class Mazes {
 
 	}
 	
+	public int distStart(int colCoor, int rowCoor) {
+		return Math.abs(rowStart - rowCoor) + Math.abs(colStart - colCoor);
+	}
+	
+	public int calcCost(int colCoor, int rowCoor) {
+		int totCost = distStart(colCoor, rowCoor);
+		totCost += (int) Math.pow(Math.abs(rowEnd - rowCoor), 2) + (int) Math.pow(Math.abs(colEnd - colCoor), 2);
+		if (colCoor + 1 < taillMaze && blocks.get(colCoor + 1).get(rowCoor).getWestBlock().equals(false)) {
+			totCost -= distStart(colCoor + 1, rowCoor);
+		}
+		return totCost;
+
+	}
+	
+	public void doTests(int col, int row) {
+		if (blocks.get(whereRow).get(whereCol).getNorthBlock().equals(false) && visited[col][row].equals(false)) {
+			stockBlockCost[col][row] = calcCost(col, row);
+			visited[col][row] = true;
+			/*
+			if (stockBlockCost[whereCol][whereRow - 1] <= max) {
+				max = stockBlockCost[whereCol][whereRow - 1];
+				maxCol = whereCol;
+				maxRow = whereRow - 1;
+				
+			}*/
+		}
+	}
+	
 	public void getDirection(Integer[][] co1, Integer[][] co2) {
 		
 	}
 
 	public void solve() {
-		coors = new Integer[colStart][rowStart];
+		ArrayList<ArrayList<Integer>> retPath = new ArrayList<ArrayList<Integer>>();
+		//REMOVE
+		setColEnd(0);
+		setRowEnd(0);
+		setColStart(5);
+		setRowStart(5);
+		System.out.println("ii");
+		//REMOVE
+		stockBlockCost = new Integer[taillMaze][taillMaze];
+
+		String ret = "";
+		for (int i = 0; i < taillMaze; i ++) {
+			for (int j = 0; j < taillMaze; j++) {
+				stockBlockCost[i][j] = calcCost(j, i);
+				ret += stockBlockCost[i][j] + "|";
+			}
+			ret += "\n";
+		}
+		System.out.println(ret);
+		
+		while (retPath.get(retPath.size()).get(0) == colEnd || retPath.get(retPath.size()).get(1) == rowEnd) {
+			
+		}
+		
+			/*
+			if (visited[whereCol][whereRow - 1].equals(true) && stockBlockCost[whereCol][whereRow - 1] >= max) {
+				max = stockBlockCost[whereCol][whereRow - 1];
+				maxCol = whereCol;
+				maxRow = whereRow - 1;
+			}
+			if (visited[whereCol + 1][whereRow].equals(true) && stockBlockCost[whereCol + 1][whereRow] >= max) {
+				max = stockBlockCost[whereCol][whereRow - 1];
+				maxCol = whereCol + 1;
+				maxRow = whereRow;
+			}
+			if (visited[whereCol][whereRow + 1].equals(true) && stockBlockCost[whereCol][whereRow + 1] >= max) {
+				max = stockBlockCost[whereCol][whereRow - 1];
+				maxCol = whereCol + 1;
+				maxRow = whereRow;
+			}
+		}*/
 	}
 	
 	public void setRowStart(int rowStart) {
@@ -61,6 +132,22 @@ public class Mazes {
 
 	public void setColEnd(int colEnd) {
 		this.colEnd = colEnd;
+	}
+
+	public int getWhereCol() {
+		return whereCol;
+	}
+
+	public void setWhereCol(int whereCol) {
+		this.whereCol = whereCol;
+	}
+
+	public int getWhereRow() {
+		return whereRow;
+	}
+
+	public void setWhereRow(int whereRow) {
+		this.whereRow = whereRow;
 	}
 
 	@Override
@@ -100,5 +187,4 @@ public class Mazes {
 		}
 		return ret;
 	}
-	
 }

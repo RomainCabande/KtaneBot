@@ -245,27 +245,23 @@ public class ComplicatedWiresGUI {
 				if(star)retStar = "Star";
 				if(color != null && cw.chekAll() == true) {
 					printLabel.setText("Cut");
-					BlueBtn.setSelected(false);
-					RedBlueBtn.setSelected(false);
-					WhiteBtn.setSelected(false);
-					StarBtn.setSelected(false);
-					LedBtn.setSelected(false);
-					RedBtn.setSelected(false);
 					wireLabel.setText("Wire : " + color + retLed + retStar);
 
 					
 				}else if(color != null && cw.chekAll() == false) {
 					printLabel.setText("Don't Cut");
-					BlueBtn.setSelected(false);
-					RedBlueBtn.setSelected(false);
-					WhiteBtn.setSelected(false);
-					StarBtn.setSelected(false);
-					LedBtn.setSelected(false);
-					RedBtn.setSelected(false);
 					wireLabel.setText("Wire : " + color + retLed + retStar);
-
 				}
-				
+				BlueBtn.setSelected(false);
+				RedBlueBtn.setSelected(false);
+				WhiteBtn.setSelected(false);
+				StarBtn.setSelected(false);
+				LedBtn.setSelected(false);
+				RedBtn.setSelected(false);
+				RedBlueBtn.setEnabled(true);
+				RedBtn.setEnabled(true);
+				BlueBtn.setEnabled(true);
+				WhiteBtn.setEnabled(true);
 			}
 		});
 		
