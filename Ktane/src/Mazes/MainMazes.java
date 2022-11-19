@@ -11,11 +11,7 @@ public class MainMazes {
 		//System.out.println(maze12);
 		//System.out.println(maze12);
 		maze12.solve();
-		ArrayList<Integer> test = new ArrayList<Integer>();
-		test.add(1);
-		test.add(2);
-		test.add(4);
-		test.add(3);
-		System.out.println(test);
-	}
+		maze12.getPath();
+		maze12.printSoluceMaze();
+	}	
 }
