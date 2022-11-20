@@ -7,7 +7,7 @@ import stdlib.In;
 import stdlib.StdDraw;
 
 public class Mazes {
-	private int taillMaze;
+	private int tailleMaze;
 	private ArrayList<ArrayList<Block>> blocks;
 	private int rowStart;
 	private int colStart;
@@ -17,6 +17,7 @@ public class Mazes {
 	private int whereRow;
 	private Integer[][] stockBlockCost;
 	private Boolean[][] visited;
+	private final int tailleCarré = 50;
 	ArrayList<ArrayList<Integer>> path = new ArrayList<ArrayList<Integer>>();
 
 
@@ -30,7 +31,7 @@ public class Mazes {
 		this.path = new ArrayList<ArrayList<Integer>>();
 		this.blocks = new ArrayList<ArrayList<Block>>(tailleMaze);
 		this.stockBlockCost = new Integer[tailleMaze][tailleMaze];
-		this.taillMaze = tailleMaze;
+		this.tailleMaze = tailleMaze;
 		visited = new Boolean[tailleMaze][tailleMaze];
 		visited[colStart][rowStart] = true;
 		this.whereCol = colStart;
@@ -41,22 +42,17 @@ public class Mazes {
 			for(int j = 0; j < tailleMaze; j++) {
 				visited[i][j] = false;
 				stockBlockCost[i][j] = calcCost(j, i);
-				ret += stockBlockCost[i][j] + "|";
+				//ret += stockBlockCost[i][j] + "|";
 			}
-			ret += "\n";
+			//ret += "\n";
 		}
-		System.out.println(ret);
+		//System.out.println(ret);
 	}
 	
 	public void addRow(int rowNbr, ArrayList<Block> rowToAdd) {
 		for (int i = 0; i < rowToAdd.size(); i++) {
 			blocks.add(rowNbr, rowToAdd);
 		}
-	}
-
-	public void mazeGen() {
-		//StdDraw.setCanvasSize(width, height);
-
 	}
 	
 	public int distStart(int colCoor, int rowCoor) {
@@ -80,14 +76,14 @@ public class Mazes {
 				minRow = whereRow - 1;
 			}
 		}
-		if ((whereCol + 1) < taillMaze) {
+		if ((whereCol + 1) < tailleMaze) {
 			if (blocks.get(whereRow).get(whereCol).getEastBlock().equals(false) && visited[whereCol + 1][whereRow].equals(false) && stockBlockCost[whereCol + 1][whereRow] < minValue) {
 				minValue = stockBlockCost[whereCol + 1][whereRow];
 				minCol = whereCol + 1;
 				minRow = whereRow;
 			}
 		}
-		if ((whereRow + 1) < taillMaze) {
+		if ((whereRow + 1) < tailleMaze) {
 			if (blocks.get(whereRow).get(whereCol).getSouthBlock().equals(false) && visited[whereCol][whereRow + 1].equals(false) && stockBlockCost[whereCol][whereRow + 1] < minValue) {
 				minValue = stockBlockCost[whereCol][whereRow + 1];
 				minCol = whereCol;
@@ -167,8 +163,20 @@ public class Mazes {
 		return path.get(path.size() - 1).get(1);
 	}
 	
-	public void getPath() {
+	public void printPath() {
 		System.out.println(path);
+	}
+	
+	public ArrayList<ArrayList<Integer>> getPath() {
+		return path;
+	}
+
+	public int getTailleMaze() {
+		return tailleMaze;
+	}
+
+	public ArrayList<ArrayList<Block>> getBlocks() {
+		return blocks;
 	}
 
 	public void printSoluceMaze() {

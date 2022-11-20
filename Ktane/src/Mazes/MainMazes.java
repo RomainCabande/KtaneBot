@@ -11,7 +11,9 @@ public class MainMazes {
 		//System.out.println(maze12);
 		//System.out.println(maze12);
 		maze12.solve();
-		maze12.getPath();
-		maze12.printSoluceMaze();
+		//maze12.getPath();
+		//maze12.printSoluceMaze();
+		mazeDrawer mazeDrawer = new mazeDrawer(maze12, 50);
+		mazeDrawer.drawEverything();
 	}	
 }
