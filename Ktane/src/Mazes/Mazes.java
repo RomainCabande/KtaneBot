@@ -17,27 +17,26 @@ public class Mazes {
 	private int whereRow;
 	private Integer[][] stockBlockCost;
 	private Boolean[][] visited;
-	private final int tailleCarré = 50;
+	private final int tailleCarre = 50;
 	ArrayList<ArrayList<Integer>> path = new ArrayList<ArrayList<Integer>>();
 
 
 	public Mazes(int tailleMaze) {
 		//************
 		setColEnd(5);
-		setRowEnd(0);
-		setColStart(1);
-		setRowStart(3);
+		setRowEnd(5);
+		setColStart(0);
+		setRowStart(0);
 		//************
 		this.path = new ArrayList<ArrayList<Integer>>();
 		this.blocks = new ArrayList<ArrayList<Block>>(tailleMaze);
 		this.stockBlockCost = new Integer[tailleMaze][tailleMaze];
 		this.tailleMaze = tailleMaze;
 		visited = new Boolean[tailleMaze][tailleMaze];
-		visited[colStart][rowStart] = true;
 		this.whereCol = colStart;
 		this.whereRow = rowStart;
 		this.path.add(new ArrayList<Integer>(Arrays.asList(rowStart, colStart)));
-		String ret = "";
+		//String ret = "";
 		for(int i = 0; i < tailleMaze; i++) {
 			for(int j = 0; j < tailleMaze; j++) {
 				visited[i][j] = false;
@@ -47,6 +46,8 @@ public class Mazes {
 			//ret += "\n";
 		}
 		//System.out.println(ret);
+		visited[colStart][rowStart] = true;
+
 	}
 	
 	public void addRow(int rowNbr, ArrayList<Block> rowToAdd) {
