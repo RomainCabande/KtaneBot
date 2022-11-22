@@ -9,12 +9,12 @@ Modules done:
  - Morse Code
  - Who's On First
  - Passwords
+ - Complicated wires
+ - Mazes
  
 Modules WIP:
- - Complicated wires
  
 TODO:
  - Memory
  - Wire Sequences
- - Mazes
  - (Knobs)
