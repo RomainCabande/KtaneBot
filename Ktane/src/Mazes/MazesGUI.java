@@ -147,7 +147,6 @@ public class MazesGUI {
 						MazesStock mazeStock = new MazesStock();
 						int col = nbr % 6;
 						int row = ((int) (nbr - col) / 6) + 1;
-						System.out.println(col + ";" + row);
 						if (col == 1 && row == 2)maze = mazeStock.maze12();
 						if (col == 5 && row == 2)maze = mazeStock.maze52();
 						if (col == 4 && row == 4)maze = mazeStock.maze44();
@@ -157,7 +156,6 @@ public class MazesGUI {
 						if (col == 2 && row == 1)maze = mazeStock.maze21();
 						if (col == 4 && row == 1)maze = mazeStock.maze41();
 						if (col == 3 && row == 2)maze = mazeStock.maze32();
-						System.out.println(maze);
 						state.set(0, true);
 						for (int i = 0; i < 36; i++) {
 							btns.get(i).setEnabled(true);
@@ -173,7 +171,7 @@ public class MazesGUI {
 						}
 						instructionLabel.setText("Press the end position");
 						state.set(1,  true);
-						System.out.println(colStart + ";" + rowStart);
+						btns.get(nbr - 1).setEnabled(false);
 					}else if (state.get(0) == true && state.get(1) == true && state.get(2) == false)	{
 						colEnd = nbr % 6;
 						rowEnd = ((int) (nbr - colEnd) / 6);
@@ -182,7 +180,6 @@ public class MazesGUI {
 							colEnd = 5;
 							rowEnd -= 1;
 						}
-						System.out.println(colEnd + ";" + rowEnd);
 
 						instructionLabel.setText("Drawing...");
 						state.set(2,  true);
@@ -192,7 +189,7 @@ public class MazesGUI {
 						maze.solveSet();
 						mazeDrawer drawer = new mazeDrawer(maze, 50);
 						drawer.drawEverything();
-						System.out.println(maze.getPath());
+						btns.get(nbr - 1).setEnabled(false);
 					}	
 				}
 			});
