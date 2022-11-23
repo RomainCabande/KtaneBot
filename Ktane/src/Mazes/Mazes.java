@@ -17,36 +17,23 @@ public class Mazes {
 	private int whereRow;
 	private Integer[][] stockBlockCost;
 	private Boolean[][] visited;
-	private final int tailleCarre = 50;
+	//private final int tailleCarre = 50;
 	ArrayList<ArrayList<Integer>> path = new ArrayList<ArrayList<Integer>>();
 
 
 	public Mazes(int tailleMaze) {
-		//************
-		setColEnd(5);
-		setRowEnd(5);
-		setColStart(0);
-		setRowStart(0);
-		//************
 		this.path = new ArrayList<ArrayList<Integer>>();
 		this.blocks = new ArrayList<ArrayList<Block>>(tailleMaze);
 		this.stockBlockCost = new Integer[tailleMaze][tailleMaze];
 		this.tailleMaze = tailleMaze;
 		visited = new Boolean[tailleMaze][tailleMaze];
-		this.whereCol = colStart;
-		this.whereRow = rowStart;
-		this.path.add(new ArrayList<Integer>(Arrays.asList(rowStart, colStart)));
+		//this.whereCol = colStart;
+		//this.whereRow = rowStart;
+		//this.path.add(new ArrayList<Integer>(Arrays.asList(rowStart, colStart)));
 		//String ret = "";
-		for(int i = 0; i < tailleMaze; i++) {
-			for(int j = 0; j < tailleMaze; j++) {
-				visited[i][j] = false;
-				stockBlockCost[i][j] = calcCost(j, i);
-				//ret += stockBlockCost[i][j] + "|";
-			}
-			//ret += "\n";
-		}
+		
 		//System.out.println(ret);
-		visited[colStart][rowStart] = true;
+		//visited[colStart][rowStart] = true;
 
 	}
 	
@@ -64,6 +51,19 @@ public class Mazes {
 		int totCost = distStart(colCoor, rowCoor);
 		totCost =  ((int) Math.pow(Math.abs(rowEnd - rowCoor), 2) + (int) Math.pow(Math.abs(colEnd - colCoor), 2));
 		return totCost;
+	}
+	
+	public void solveSet() {
+		for(int i = 0; i < tailleMaze; i++) {
+			for(int j = 0; j < tailleMaze; j++) {
+				visited[i][j] = false;
+				stockBlockCost[i][j] = calcCost(j, i);
+				//ret += stockBlockCost[i][j] + "|";
+			}
+			//ret += "\n";
+		}
+		visited[colStart][rowStart] = true;
+		solve();
 	}
 
 	public void solve() {
@@ -178,6 +178,15 @@ public class Mazes {
 
 	public ArrayList<ArrayList<Block>> getBlocks() {
 		return blocks;
+	}
+	
+	public void setStart(int row, int col) {
+		setRowStart(row);
+		setColStart(col);
+		addToPath(row, col);
+		setWhereRow(row);
+		setWhereCol(col);
+		visited[colStart][rowStart] = true;
 	}
 
 	public void printSoluceMaze() {

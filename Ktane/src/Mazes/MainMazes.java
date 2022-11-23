@@ -16,6 +16,9 @@ public class MainMazes {
 		System.out.println(maze12.getPath());
 		*/
 		Mazes mazeS= maze.maze32();
+		mazeS.setStart(2, 2);
+		mazeS.setColEnd(5);
+		mazeS.setColEnd(5);
 		mazeS.solve();
 		System.out.println(mazeS);
 		mazeDrawer mazeDrawer = new mazeDrawer(mazeS, 50);
