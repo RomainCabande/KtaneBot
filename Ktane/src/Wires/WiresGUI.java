@@ -23,20 +23,15 @@ public class WiresGUI {
 	public JFrame frame;
 	private JTextField displayColorTextField;
 	private JTextPane displaySolutionTextPane;
-	private static BombInfo bombInfo;
+	private BombInfo bombInfo;
+
 
 	/**
 	 * Create the application.
 	 */
 	public WiresGUI(BombInfo bombInfo) {
-		WiresGUI.bombInfo = bombInfo;
-		initialize(WiresGUI.bombInfo);
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize(BombInfo bombInfo) {
+		this.bombInfo = bombInfo;
+		
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 450, 348);

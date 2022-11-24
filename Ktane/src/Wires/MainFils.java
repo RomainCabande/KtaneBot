@@ -16,7 +16,7 @@ public class MainFils {
 	
 	public String cutWire() {
 		wires.addStringToFil(wiresSequence);
-		return "Couper le " + wires.wireToCut(bombInfo) + "e fil";
+		return "Cut wire : " + wires.wireToCut(bombInfo);
 	}
 
 }
