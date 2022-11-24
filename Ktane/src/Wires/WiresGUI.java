@@ -1,23 +1,13 @@
 package Wires;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import javax.swing.BoxLayout;
-import java.awt.Component;
 import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.UIManager;
-import javax.swing.border.LineBorder;
-
 import GUIModulesFeatures.BombInfo;
-import GUIModulesFeatures.MainGUI;
-
 import java.awt.Color;
 import javax.swing.JTextField;
 import java.awt.Dimension;
@@ -36,27 +26,11 @@ public class WiresGUI {
 	private static BombInfo bombInfo;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					WiresGUI window = new WiresGUI(bombInfo);
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the application.
 	 */
 	public WiresGUI(BombInfo bombInfo) {
-		this.bombInfo = bombInfo;
-		initialize(this.bombInfo);
+		WiresGUI.bombInfo = bombInfo;
+		initialize(WiresGUI.bombInfo);
 	}
 
 	/**
@@ -86,21 +60,12 @@ public class WiresGUI {
 		bottomPanel.add(buttonPanel, BorderLayout.EAST);
 		
 		JButton btnOK = new JButton("OK");
-		btnOK.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				MainFils wires = new MainFils(bombInfo, displayColorTextField.getText());
-				displaySolutionTextPane.setText(wires.cutWire());
-			}
-		});
 		buttonPanel.add(btnOK);
+		validateBtnAL(btnOK);
 		
 		JButton btnCancel = new JButton("Cancel");
-		btnCancel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-			}
-		});
 		buttonPanel.add(btnCancel);
+		closeWindowAL(btnCancel);
 		
 		JPanel middlePanel = new JPanel();
 		middlePanel.setBackground(new Color(255, 255, 255));
@@ -113,54 +78,34 @@ public class WiresGUI {
 		middlePanel.add(colorBtnPanel);
 		
 		JButton btnRed = new JButton("");
-		btnRed.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				displayColorTextField.setText(displayColorTextField.getText() + "R");
-			}
-		});
 		btnRed.setMargin(new Insets(0, 0, 0, 0));
 		btnRed.setIcon(new ImageIcon(WiresGUI.class.getResource("/Icons/WiresRedSquare40x40.png")));
 		colorBtnPanel.add(btnRed);
+		setColorBtnAL(btnRed, "R");
 		
 		JButton btnBlue = new JButton("");
-		btnBlue.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				displayColorTextField.setText(displayColorTextField.getText() + "B");
-			}
-		});
 		btnBlue.setIcon(new ImageIcon(WiresGUI.class.getResource("/Icons/WiresBlueSquare40x40.png")));
 		btnBlue.setMargin(new Insets(0, 0, 0, 0));
 		colorBtnPanel.add(btnBlue);
+		setColorBtnAL(btnBlue, "B");
 		
 		JButton btnWhite = new JButton("");
-		btnWhite.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				displayColorTextField.setText(displayColorTextField.getText() + "W");
-			}
-		});
 		btnWhite.setIcon(new ImageIcon(WiresGUI.class.getResource("/Icons/WiresWhiteSquare40x40.png")));
 		btnWhite.setMargin(new Insets(0, 0, 0, 0));
 		colorBtnPanel.add(btnWhite);
+		setColorBtnAL(btnWhite, "W");
 		
 		JButton btnYellow = new JButton("");
-		btnYellow.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				displayColorTextField.setText(displayColorTextField.getText() + "J");
-			}
-		});
 		btnYellow.setIcon(new ImageIcon(WiresGUI.class.getResource("/Icons/WiresYellowSquare40x40.png")));
 		btnYellow.setMargin(new Insets(0, 0, 0, 0));
 		colorBtnPanel.add(btnYellow);
+		setColorBtnAL(btnYellow, "J");
 		
 		JButton btnBlack = new JButton("");
-		btnBlack.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				displayColorTextField.setText(displayColorTextField.getText() + "N");
-			}
-		});
 		btnBlack.setIcon(new ImageIcon(WiresGUI.class.getResource("/Icons/WiresBlackSquare40x40.png")));
 		btnBlack.setMargin(new Insets(0, 0, 0, 0));
 		colorBtnPanel.add(btnBlack);
+		setColorBtnAL(btnBlack, "N");
 		
 		JPanel displayColorPanel = new JPanel();
 		displayColorPanel.setBackground(SystemColor.menu);
@@ -174,13 +119,9 @@ public class WiresGUI {
 		displayColorTextField.setColumns(10);
 		
 		JButton btnDeleteColors = new JButton("Delete");
-		btnDeleteColors.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				displayColorTextField.setText("");
-			}
-		});
 		btnDeleteColors.setBounds(176, 36, 89, 23);
 		displayColorPanel.add(btnDeleteColors);
+		deleteColorsAL(btnDeleteColors);
 		
 		JPanel displaySolutionPanel = new JPanel();
 		middlePanel.add(displaySolutionPanel);
@@ -189,6 +130,39 @@ public class WiresGUI {
 		displaySolutionTextPane = new JTextPane();
 		displaySolutionTextPane.setBounds(41, 5, 356, 65);
 		displaySolutionPanel.add(displaySolutionTextPane);
+	}
+	
+	public void closeWindowAL(JButton btn) {
+		btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
+	}
+	
+	public void validateBtnAL(JButton btn) {
+		btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFils wires = new MainFils(bombInfo, displayColorTextField.getText());
+				displaySolutionTextPane.setText(wires.cutWire());
+			}
+		});
+	}
+	
+	public void setColorBtnAL(JButton btn, String color) {
+		btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				displayColorTextField.setText(displayColorTextField.getText() + color);
+			}
+		});
+	}
+	
+	public void deleteColorsAL(JButton btn) {
+		btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				displayColorTextField.setText("");
+			}
+		});
 	}
 	
 }
