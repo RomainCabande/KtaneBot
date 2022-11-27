@@ -26,17 +26,17 @@ public class Button {
 		String string = "";
 		JFrame frame = new JFrame("");
 		if (this.bombInfo.getBatteriesNumber() > 2) {
-			int result = JOptionPane.showConfirmDialog(frame,"Avez-vous un lit indicator FRK ?", "Confirm answer",
+			int result = JOptionPane.showConfirmDialog(frame,"Do you have FRK lit indicator ?", "Confirm answer",
 		                 JOptionPane.YES_NO_OPTION,
 		                 JOptionPane.QUESTION_MESSAGE);
 			if(result == JOptionPane.YES_OPTION) {
-				string = "Appuyez puis relâchez immédiatement le bouton";
+				string = "Press then release button";
 			} else {
 				StripColorGUI stripGUI = new StripColorGUI(this);
 				stripGUI.frame.setVisible(true);
 			}
 		} else if(this.bombInfo.getBatteriesNumber() > 1 && this.buttonText == ButtonText.DETONATE) {
-			string = "Appuyez puis relâchez immédiatement le bouton";
+			string = "Press then release button";
 		} else {
 			StripColorGUI stripGUI = new StripColorGUI(this);
 			stripGUI.frame.setVisible(true);
@@ -45,7 +45,7 @@ public class Button {
 	}
 	
 	public String releasingHeldButton(StripColor stripColor) {
-		String string = "Relâchez quand le compteur affiche un ";
+		String string = "Release when counter displays a ";
 		if(stripColor == StripColor.BLUE) {
 			string += "4";
 		} else if (stripColor == StripColor.YELLOW) {

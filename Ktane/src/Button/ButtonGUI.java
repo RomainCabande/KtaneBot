@@ -1,11 +1,8 @@
 package Button;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
-import javax.swing.BoxLayout;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
@@ -24,102 +21,91 @@ import java.awt.event.ActionEvent;
 public class ButtonGUI {
 
 	public JFrame frame;
-	private static BombInfo bombInfo;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ButtonGUI window = new ButtonGUI(bombInfo);
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	public BombInfo bombInfo;
+	public JComboBox<ButtonColor> colorComboBox;
+	public JComboBox<ButtonText> wordComboBox;
+	public JTextPane displayTextPane;
 
 	/**
 	 * Create the application.
 	 */
 	public ButtonGUI(BombInfo bombInfo) {
 		this.bombInfo = bombInfo;
-		initialize(this.bombInfo);
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize(BombInfo bombInfo) {
+		
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 450, 215);
 		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(220, 220, 220));
-		frame.getContentPane().add(panel, BorderLayout.NORTH);
+		JPanel topPanel = new JPanel();
+		topPanel.setBackground(new Color(220, 220, 220));
+		frame.getContentPane().add(topPanel, BorderLayout.NORTH);
 		
-		JLabel lblNewLabel = new JLabel("BUTTON");
-		lblNewLabel.setFont(new Font("Open Sans", Font.BOLD, 15));
-		panel.add(lblNewLabel);
+		JLabel titleLabel = new JLabel("BUTTON");
+		titleLabel.setFont(new Font("Open Sans", Font.BOLD, 15));
+		topPanel.add(titleLabel);
 		
-		JPanel panel_1 = new JPanel();
-		frame.getContentPane().add(panel_1, BorderLayout.CENTER);
-		panel_1.setLayout(new GridLayout(2, 1, 0, 0));
+		JPanel middlePanel = new JPanel();
+		frame.getContentPane().add(middlePanel, BorderLayout.CENTER);
+		middlePanel.setLayout(new GridLayout(2, 1, 0, 0));
 		
-		JPanel panel_4 = new JPanel();
-		panel_1.add(panel_4);
-		panel_4.setLayout(null);
+		JPanel comboBoxesPanel = new JPanel();
+		middlePanel.add(comboBoxesPanel);
+		comboBoxesPanel.setLayout(null);
 		
-		JComboBox<ButtonColor> comboBox = new JComboBox<ButtonColor>();
-		comboBox.setModel(new javax.swing.DefaultComboBoxModel<ButtonColor>(ButtonColor.values()));
-		comboBox.setBounds(84, 10, 80, 21);
-		comboBox.setPreferredSize(new Dimension(50, 21));
-		panel_4.add(comboBox);
+		this.colorComboBox = new JComboBox<ButtonColor>();
+		colorComboBox.setModel(new javax.swing.DefaultComboBoxModel<ButtonColor>(ButtonColor.values()));
+		colorComboBox.setBounds(84, 10, 80, 21);
+		colorComboBox.setPreferredSize(new Dimension(50, 21));
+		comboBoxesPanel.add(colorComboBox);
 		
-		JComboBox<ButtonText> comboBox_1 = new JComboBox<ButtonText>();
-		comboBox_1.setModel(new javax.swing.DefaultComboBoxModel<ButtonText>(ButtonText.values()));
-		comboBox_1.setBounds(174, 10, 80, 21);
-		comboBox_1.setPreferredSize(new Dimension(50, 21));
-		panel_4.add(comboBox_1);
+		this.wordComboBox = new JComboBox<ButtonText>();
+		wordComboBox.setModel(new javax.swing.DefaultComboBoxModel<ButtonText>(ButtonText.values()));
+		wordComboBox.setBounds(174, 10, 80, 21);
+		wordComboBox.setPreferredSize(new Dimension(50, 21));
+		comboBoxesPanel.add(wordComboBox);
 		
-		JPanel panel_3 = new JPanel();
-		panel_1.add(panel_3);
-		panel_3.setLayout(null);
+		JPanel displayPanel = new JPanel();
+		middlePanel.add(displayPanel);
+		displayPanel.setLayout(null);
 		
-		JTextPane textPane = new JTextPane();
-		textPane.setEditable(false);
-		textPane.setFocusable(false);
-		textPane.setBounds(52, 5, 333, 32);
-		panel_3.add(textPane);
+		this.displayTextPane = new JTextPane();
+		displayTextPane.setEditable(false);
+		displayTextPane.setFocusable(false);
+		displayTextPane.setBounds(52, 5, 333, 32);
+		displayPanel.add(displayTextPane);
 		
-		JButton btnNewButton_1 = new JButton("Valider");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Button button = new Button((ButtonColor) comboBox.getSelectedItem(), (ButtonText) comboBox_1.getSelectedItem(), bombInfo);
-				textPane.setText(button.solveModule());
-			}
-		});
-		btnNewButton_1.setBounds(264, 10, 85, 21);
-		panel_4.add(btnNewButton_1);
+		JButton validateBtn = new JButton("Valider");
+		validateBtn.setBounds(264, 10, 85, 21);
+		comboBoxesPanel.add(validateBtn);
+		validateBtnAL(validateBtn);
 		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(new Color(220, 220, 220));
-		FlowLayout flowLayout = (FlowLayout) panel_2.getLayout();
-		flowLayout.setAlignment(FlowLayout.RIGHT);
-		frame.getContentPane().add(panel_2, BorderLayout.SOUTH);
+		JPanel bottomPanel = new JPanel();
+		bottomPanel.setBackground(new Color(220, 220, 220));
+		FlowLayout fl_bottomPanel = (FlowLayout) bottomPanel.getLayout();
+		fl_bottomPanel.setAlignment(FlowLayout.RIGHT);
+		frame.getContentPane().add(bottomPanel, BorderLayout.SOUTH);
 		
-		JButton btnNewButton = new JButton("Cancel");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-			}
-		});
-		panel_2.add(btnNewButton);
+		JPanel bottomBtnPanel = new JPanel();
+		FlowLayout fl_bottomBtnPanel = (FlowLayout) bottomBtnPanel.getLayout();
+		fl_bottomBtnPanel.setVgap(0);
+		fl_bottomBtnPanel.setHgap(0);
+		fl_bottomBtnPanel.setAlignment(FlowLayout.RIGHT);
+		bottomPanel.add(bottomBtnPanel);
+		
+		
+		JButton closeBtn = new JButton("Close");
+		bottomBtnPanel.add(closeBtn);
+		ActionListenerController.btnALCloseFrame(closeBtn, frame);
 	}
 
+	public void validateBtnAL(JButton b) {
+		b.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Button button = new Button((ButtonColor) colorComboBox.getSelectedItem(), (ButtonText) wordComboBox.getSelectedItem(), bombInfo);
+				displayTextPane.setText(button.solveModule());
+			}
+		});
+	}
+	
 }

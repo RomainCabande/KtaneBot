@@ -18,6 +18,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextPane;
 
+import Button.ActionListenerController;
+
 public class WiresGUI {
 
 	public JFrame frame;
@@ -54,13 +56,9 @@ public class WiresGUI {
 		buttonPanel.setBackground(SystemColor.menu);
 		bottomPanel.add(buttonPanel, BorderLayout.EAST);
 		
-		JButton btnOK = new JButton("OK");
-		buttonPanel.add(btnOK);
-		validateBtnAL(btnOK);
-		
-		JButton btnCancel = new JButton("Cancel");
-		buttonPanel.add(btnCancel);
-		closeWindowAL(btnCancel);
+		JButton closeBtn = new JButton("Close");
+		buttonPanel.add(closeBtn);
+		ActionListenerController.btnALCloseFrame(closeBtn, frame);
 		
 		JPanel middlePanel = new JPanel();
 		middlePanel.setBackground(new Color(255, 255, 255));
@@ -76,31 +74,31 @@ public class WiresGUI {
 		btnRed.setMargin(new Insets(0, 0, 0, 0));
 		btnRed.setIcon(new ImageIcon(WiresGUI.class.getResource("/Icons/WiresRedSquare40x40.png")));
 		colorBtnPanel.add(btnRed);
-		setColorBtnAL(btnRed, "R");
+		ActionListenerController.btnALSetText(btnRed, displaySolutionTextPane, displayColorTextField.getText() + "R");
 		
 		JButton btnBlue = new JButton("");
 		btnBlue.setIcon(new ImageIcon(WiresGUI.class.getResource("/Icons/WiresBlueSquare40x40.png")));
 		btnBlue.setMargin(new Insets(0, 0, 0, 0));
 		colorBtnPanel.add(btnBlue);
-		setColorBtnAL(btnBlue, "B");
+		ActionListenerController.btnALSetText(btnBlue, displaySolutionTextPane, displayColorTextField.getText() + "B");
 		
 		JButton btnWhite = new JButton("");
 		btnWhite.setIcon(new ImageIcon(WiresGUI.class.getResource("/Icons/WiresWhiteSquare40x40.png")));
 		btnWhite.setMargin(new Insets(0, 0, 0, 0));
 		colorBtnPanel.add(btnWhite);
-		setColorBtnAL(btnWhite, "W");
+		ActionListenerController.btnALSetText(btnWhite, displaySolutionTextPane, displayColorTextField.getText() + "W");
 		
 		JButton btnYellow = new JButton("");
 		btnYellow.setIcon(new ImageIcon(WiresGUI.class.getResource("/Icons/WiresYellowSquare40x40.png")));
 		btnYellow.setMargin(new Insets(0, 0, 0, 0));
 		colorBtnPanel.add(btnYellow);
-		setColorBtnAL(btnYellow, "J");
+		ActionListenerController.btnALSetText(btnWhite, displaySolutionTextPane, displayColorTextField.getText() + "J");
 		
 		JButton btnBlack = new JButton("");
 		btnBlack.setIcon(new ImageIcon(WiresGUI.class.getResource("/Icons/WiresBlackSquare40x40.png")));
 		btnBlack.setMargin(new Insets(0, 0, 0, 0));
 		colorBtnPanel.add(btnBlack);
-		setColorBtnAL(btnBlack, "N");
+		ActionListenerController.btnALSetText(btnBlack, displaySolutionTextPane, displayColorTextField.getText() + "N");
 		
 		JPanel displayColorPanel = new JPanel();
 		displayColorPanel.setBackground(SystemColor.menu);
@@ -114,9 +112,13 @@ public class WiresGUI {
 		displayColorTextField.setColumns(10);
 		
 		JButton btnDeleteColors = new JButton("Delete");
-		btnDeleteColors.setBounds(176, 36, 89, 23);
+		btnDeleteColors.setBounds(156, 41, 61, 22);
 		displayColorPanel.add(btnDeleteColors);
 		deleteColorsAL(btnDeleteColors);
+		
+		JButton btnOK_1 = new JButton("OK");
+		btnOK_1.setBounds(222, 42, 61, 21);
+		displayColorPanel.add(btnOK_1);
 		
 		JPanel displaySolutionPanel = new JPanel();
 		middlePanel.add(displaySolutionPanel);
@@ -127,29 +129,8 @@ public class WiresGUI {
 		displaySolutionPanel.add(displaySolutionTextPane);
 	}
 	
-	public void closeWindowAL(JButton btn) {
-		btn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-			}
-		});
-	}
 	
 	public void validateBtnAL(JButton btn) {
-		btn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				MainFils wires = new MainFils(bombInfo, displayColorTextField.getText());
-				displaySolutionTextPane.setText(wires.cutWire());
-			}
-		});
-	}
-	
-	public void setColorBtnAL(JButton btn, String color) {
-		btn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				displayColorTextField.setText(displayColorTextField.getText() + color);
-			}
-		});
 	}
 	
 	public void deleteColorsAL(JButton btn) {
