@@ -93,10 +93,9 @@ public class ButtonGUI {
 		fl_bottomBtnPanel.setAlignment(FlowLayout.RIGHT);
 		bottomPanel.add(bottomBtnPanel);
 		
-		
 		JButton closeBtn = new JButton("Close");
 		bottomBtnPanel.add(closeBtn);
-		ActionListenerController.btnALCloseFrame(closeBtn, frame);
+		btnALCloseFrame(closeBtn, frame);
 	}
 
 	public void validateBtnAL(JButton b) {
@@ -108,4 +107,11 @@ public class ButtonGUI {
 		});
 	}
 	
+	public void btnALCloseFrame(JButton b, JFrame f) {
+		b.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				f.dispose();
+			}
+		});
+	}
 }

@@ -18,7 +18,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextPane;
 
-import Button.ActionListenerController;
+import Button.Button;
+import Button.ButtonColor;
+import Button.ButtonText;
 
 public class WiresGUI {
 
@@ -27,16 +29,12 @@ public class WiresGUI {
 	private JTextPane displaySolutionTextPane;
 	private BombInfo bombInfo;
 
-
-	/**
-	 * Create the application.
-	 */
 	public WiresGUI(BombInfo bombInfo) {
 		this.bombInfo = bombInfo;
 		
 		frame = new JFrame();
 		frame.setResizable(false);
-		frame.setBounds(100, 100, 450, 348);
+		frame.setBounds(100, 100, 450, 320);
 		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		
 		JPanel topLabelPanel = new JPanel();
@@ -58,7 +56,7 @@ public class WiresGUI {
 		
 		JButton closeBtn = new JButton("Close");
 		buttonPanel.add(closeBtn);
-		ActionListenerController.btnALCloseFrame(closeBtn, frame);
+		btnALCloseFrame(closeBtn, frame);
 		
 		JPanel middlePanel = new JPanel();
 		middlePanel.setBackground(new Color(255, 255, 255));
@@ -74,31 +72,31 @@ public class WiresGUI {
 		btnRed.setMargin(new Insets(0, 0, 0, 0));
 		btnRed.setIcon(new ImageIcon(WiresGUI.class.getResource("/Icons/WiresRedSquare40x40.png")));
 		colorBtnPanel.add(btnRed);
-		ActionListenerController.btnALSetText(btnRed, displaySolutionTextPane, displayColorTextField.getText() + "R");
+		btnALSetText(btnRed, "R");
 		
 		JButton btnBlue = new JButton("");
 		btnBlue.setIcon(new ImageIcon(WiresGUI.class.getResource("/Icons/WiresBlueSquare40x40.png")));
 		btnBlue.setMargin(new Insets(0, 0, 0, 0));
 		colorBtnPanel.add(btnBlue);
-		ActionListenerController.btnALSetText(btnBlue, displaySolutionTextPane, displayColorTextField.getText() + "B");
+		btnALSetText(btnBlue, "B");
 		
 		JButton btnWhite = new JButton("");
 		btnWhite.setIcon(new ImageIcon(WiresGUI.class.getResource("/Icons/WiresWhiteSquare40x40.png")));
 		btnWhite.setMargin(new Insets(0, 0, 0, 0));
 		colorBtnPanel.add(btnWhite);
-		ActionListenerController.btnALSetText(btnWhite, displaySolutionTextPane, displayColorTextField.getText() + "W");
+		btnALSetText(btnWhite, "W");
 		
 		JButton btnYellow = new JButton("");
 		btnYellow.setIcon(new ImageIcon(WiresGUI.class.getResource("/Icons/WiresYellowSquare40x40.png")));
 		btnYellow.setMargin(new Insets(0, 0, 0, 0));
 		colorBtnPanel.add(btnYellow);
-		ActionListenerController.btnALSetText(btnWhite, displaySolutionTextPane, displayColorTextField.getText() + "J");
+		btnALSetText(btnYellow, "J");
 		
 		JButton btnBlack = new JButton("");
 		btnBlack.setIcon(new ImageIcon(WiresGUI.class.getResource("/Icons/WiresBlackSquare40x40.png")));
 		btnBlack.setMargin(new Insets(0, 0, 0, 0));
 		colorBtnPanel.add(btnBlack);
-		ActionListenerController.btnALSetText(btnBlack, displaySolutionTextPane, displayColorTextField.getText() + "N");
+		btnALSetText(btnBlack, "N");
 		
 		JPanel displayColorPanel = new JPanel();
 		displayColorPanel.setBackground(SystemColor.menu);
@@ -112,31 +110,55 @@ public class WiresGUI {
 		displayColorTextField.setColumns(10);
 		
 		JButton btnDeleteColors = new JButton("Delete");
-		btnDeleteColors.setBounds(156, 41, 61, 22);
+		btnDeleteColors.setBounds(133, 42, 80, 22);
 		displayColorPanel.add(btnDeleteColors);
 		deleteColorsAL(btnDeleteColors);
 		
-		JButton btnOK_1 = new JButton("OK");
-		btnOK_1.setBounds(222, 42, 61, 21);
-		displayColorPanel.add(btnOK_1);
+		JButton btnOK = new JButton("OK");
+		btnOK.setBounds(222, 42, 80, 22);
+		displayColorPanel.add(btnOK);
+		validateBtnAL(btnOK);
 		
 		JPanel displaySolutionPanel = new JPanel();
 		middlePanel.add(displaySolutionPanel);
 		displaySolutionPanel.setLayout(null);
 		
 		displaySolutionTextPane = new JTextPane();
-		displaySolutionTextPane.setBounds(41, 5, 356, 65);
+		displaySolutionTextPane.setBounds(43, 20, 356, 31);
 		displaySolutionPanel.add(displaySolutionTextPane);
 	}
 	
 	
 	public void validateBtnAL(JButton btn) {
+		btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFils w = new MainFils(bombInfo, displayColorTextField.getText());
+				displaySolutionTextPane.setText(w.cutWire());
+			}
+		});
 	}
 	
 	public void deleteColorsAL(JButton btn) {
 		btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				displayColorTextField.setText("");
+				displayColorTextField.setText("");
+			}
+		});
+	}
+	
+	public void btnALCloseFrame(JButton b, JFrame f) {
+		b.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				f.dispose();
+			}
+		});
+	}
+	
+	public void btnALSetText(JButton b, String c) {
+		b.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				displayColorTextField.setText(displayColorTextField.getText() + c);
 			}
 		});
 	}

@@ -1,6 +1,5 @@
 package Button;
 
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -25,7 +24,11 @@ public class Button {
 	public String solveModule() {
 		String string = "";
 		JFrame frame = new JFrame("");
-		if (this.bombInfo.getBatteriesNumber() > 2) {
+		if(this.buttonColor.equals(ButtonColor.RED) && this.buttonText.equals(ButtonText.HOLD)) {
+			string = "Press then release button";
+		} else if(this.bombInfo.getBatteriesNumber() > 1 && this.buttonText == ButtonText.DETONATE) {
+			string = "Press then release button";
+		} else if (this.bombInfo.getBatteriesNumber() > 2) {
 			int result = JOptionPane.showConfirmDialog(frame,"Do you have FRK lit indicator ?", "Confirm answer",
 		                 JOptionPane.YES_NO_OPTION,
 		                 JOptionPane.QUESTION_MESSAGE);
@@ -35,8 +38,6 @@ public class Button {
 				StripColorGUI stripGUI = new StripColorGUI(this);
 				stripGUI.frame.setVisible(true);
 			}
-		} else if(this.bombInfo.getBatteriesNumber() > 1 && this.buttonText == ButtonText.DETONATE) {
-			string = "Press then release button";
 		} else {
 			StripColorGUI stripGUI = new StripColorGUI(this);
 			stripGUI.frame.setVisible(true);
